@@ -2,7 +2,7 @@ var NLinesContainer = document.getElementsByClassName("table").item(0);
 var addedCells = document.getElementsByClassName("newCell");
 var newRows = document.getElementsByClassName("newRow");
 var emptyLine =
-  "<tr class='newRow'><td class='newCell'> </td><td class='newCell'></td><td class='newCell'></td></td><td class='newCell'></td><td class='newCell'></td><td class='newCell'></td></tr><tr><td class='newCell' colspan='3'></td></td><td class='newCell'></td><td class='newCell'></td><td class='newCell'></td></tr>";
+  "<tr class='newRow'><td class='designation' contenteditable></td><td class='newCell'> </td><td class='newCell'></td><td class='newCell'></td></td><td class='newCell'></td><td class='newCell'></td><td class='newCell'></td></tr><tr><td class='designation' contenteditable></td><td class='newCell' colspan='3'></td></td><td class='newCell'></td><td class='newCell'></td><td class='newCell'></td></tr>";
 
 var P1Total = 0;
 var P2Total = 0;
@@ -10,7 +10,6 @@ var P3Total = 0;
 var GTotal = 0;
 
 function addLine() {
-  var lastContent = NLinesContainer.innerHTML;
   NLinesContainer.insertAdjacentHTML("beforeend", emptyLine);
   var TIndex = Object.keys(newRows)[Object.keys(newRows).length - 1];
   Object.values(addedCells).forEach(function (cell, index) {

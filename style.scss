@@ -1,42 +1,72 @@
-body{
+body {
     background-image: url("rect2340.png");
     background: lightgray;
     background-size: clip;
     color: black;
-    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-    font-size: 2em;;
+    font-family: 'Segoe UI',
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 2em;
+    ;
 }
 
-td,th {
+td,
+th {
     border: 1px solid black;
     border-collapse: collapse;
-    min-width: 5vw;
+    min-width: 10vw;
     min-height: 5vh;
     vertical-align: middle;
     text-align: center;
     padding: 3px;
 }
 
+th {
+    position: sticky;
+}
+
 main {
     padding: 1vh;
     empty-cells: show;
 }
-.txtright{
+
+.txtright {
     text-align: right;
 }
 
-.total{
+.total {
     text-align: left;
 }
 
-input[type="number"]{
+input[type="number"] {
     background: none;
     border: none;
     font: inherit;
-    max-width: 9vw;
+    max-width: 3em;
+    width: fit-content;
 }
 
-.wattage{
+button {
+    position: absolute;
+    bottom: 1vh;
+    left: 1vh;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 2px solid #41cfed;
+    color: #41cfed;
+    padding: 1vh 2vw;
+    transition: .3s;
+
+    &:hover,
+    &:focus {
+        box-shadow: inset 10em 0 0 0 adjust-hue($color: #41cfed, $degrees: 45);
+        border: 2px solid adjust-hue($color: #41cfed, $degrees: 45);
+        ;
+        color: azure;
+    }
+}
+
+.wattage {
     text-align: right;
 }
-

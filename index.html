@@ -7,7 +7,7 @@
     <title>Tableau triphasé</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -15,9 +15,8 @@
         <table class="table">
             <tr>
 
-                <th>
-                </th>
-                <th class="txtright">
+                <th rowspan="3">Désignation</th>
+                <th class="txtright" colspan="2">
                     Total =
                 </th>
                 <th class="total">
@@ -45,15 +44,15 @@
 
             </tr>
             <tr>
-                
+
                 <td class="triphase" colspan="3">
                     Triphasé
                 </td>
             </tr>
-            
+
         </table>
         <div>
-            <input type="button" value="Ajouter une ligne" onclick="addLine()">
+            <button onclick="addLine()">Ajouter une ligne</button>
         </div>
     </main>
 </body>

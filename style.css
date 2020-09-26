@@ -3,18 +3,24 @@ body {
   background: lightgray;
   background-size: clip;
   color: black;
-  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
   font-size: 2em;
 }
 
-td, th {
+td,
+th {
   border: 1px solid black;
   border-collapse: collapse;
-  min-width: 5vw;
+  min-width: 10vw;
   min-height: 5vh;
   vertical-align: middle;
   text-align: center;
   padding: 3px;
+}
+
+th {
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 main {
@@ -34,7 +40,30 @@ input[type="number"] {
   background: none;
   border: none;
   font: inherit;
-  max-width: 9vw;
+  max-width: 3em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+button {
+  position: absolute;
+  bottom: 1vh;
+  left: 1vh;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 2px solid #41cfed;
+  color: #41cfed;
+  padding: 1vh 2vw;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+button:hover, button:focus {
+  -webkit-box-shadow: inset 10em 0 0 0 #414eed;
+          box-shadow: inset 10em 0 0 0 #414eed;
+  border: 2px solid #414eed;
+  color: azure;
 }
 
 .wattage {
