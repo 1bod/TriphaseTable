@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau triphasé</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <table class="table">
+            <tr>
+
+                <th>
+                </th>
+                <th class="txtright">
+                    Total =
+                </th>
+                <th class="total">
+                    <span id="totalN">0</span>W
+                </th>
+                <th><span id="totalP1">0</span>W</th>
+                <th><span id="totalP2">0</span>W</th>
+                <th><span id="totalP3">0</span>W</th>
+
+            </tr>
+            <tr>
+
+                <td class="mono">
+                    Mono. phase 1
+                </td>
+                <td class="mono">
+                    Mono. phase 2
+                </td>
+                <td class="mono">
+                    Mono. phase 3
+                </td>
+                <td rowspan="2">Phase 1</td>
+                <td rowspan="2">Phase 2</td>
+                <td rowspan="2">Phase 3</td>
+
+            </tr>
+            <tr>
+                
+                <td class="triphase" colspan="3">
+                    Triphasé
+                </td>
+            </tr>
+            
+        </table>
+        <div>
+            <input type="button" value="Ajouter une ligne" onclick="addLine()">
+        </div>
+    </main>
+</body>
+
+</html>

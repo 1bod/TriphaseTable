@@ -1,0 +1,42 @@
+body{
+    background-image: url("rect2340.png");
+    background: lightgray;
+    background-size: clip;
+    color: black;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-size: 2em;;
+}
+
+td,th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    min-width: 5vw;
+    min-height: 5vh;
+    vertical-align: middle;
+    text-align: center;
+    padding: 3px;
+}
+
+main {
+    padding: 1vh;
+    empty-cells: show;
+}
+.txtright{
+    text-align: right;
+}
+
+.total{
+    text-align: left;
+}
+
+input[type="number"]{
+    background: none;
+    border: none;
+    font: inherit;
+    max-width: 9vw;
+}
+
+.wattage{
+    text-align: right;
+}
+
