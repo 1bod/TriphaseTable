@@ -69,4 +69,10 @@ button:hover, button:focus {
 .wattage {
   text-align: right;
 }
+
+@media print {
+  button {
+    display: none !important;
+  }
+}
 /*# sourceMappingURL=style.css.map */

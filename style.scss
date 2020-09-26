@@ -69,4 +69,12 @@ button {
 
 .wattage {
     text-align: right;
+
+
+}
+
+@media print {
+    button {
+        display: none !important;
+    }
 }
