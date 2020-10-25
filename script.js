@@ -1,3 +1,5 @@
+
+
 var NLinesContainer = document.getElementsByClassName("table").item(0);
 var addedCells = document.getElementsByClassName("newCell");
 var newRows = document.getElementsByClassName("newRow");
@@ -9,7 +11,7 @@ var P2Total = 0;
 var P3Total = 0;
 var GTotal = 0;
 
-function addLine() {
+function newRow() {
   NLinesContainer.insertAdjacentHTML("beforeend", emptyLine);
   var TIndex = Object.keys(newRows)[Object.keys(newRows).length - 1];
   Object.values(addedCells).forEach(function (cell, index) {

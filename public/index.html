@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau triphasé</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="../src/script.js" defer></script>
+    <link rel="stylesheet" href="../src/style.css">
+
 </head>
 
 <body>
     <main>
-        <table class="table">
+        <table id="maintable">
             <tr>
 
                 <th rowspan="3">Désignation</th>
@@ -20,11 +21,11 @@
                     Total =
                 </th>
                 <th class="total">
-                    <span id="totalN">0</span>W
+                    <span id="totalN">{{grandTotal}}</span>W
                 </th>
-                <th><span id="totalP1">0</span>W</th>
-                <th><span id="totalP2">0</span>W</th>
-                <th><span id="totalP3">0</span>W</th>
+                <th><span id="totalP1">{{totalP1}}</span>W</th>
+                <th><span id="totalP2">{{totalP2}}</span>W</th>
+                <th><span id="totalP3">{{totalP3}}</span>W</th>
 
             </tr>
             <tr>
@@ -49,12 +50,17 @@
                     Triphasé
                 </td>
             </tr>
-
+            <tr class="trow" :id="id">
+                <td contenteditable></td>
+                <td colspan="3">{{Twattage}}</td>
+            </tr>
         </table>
         <div>
-            <button onclick="addLine()">Ajouter une ligne</button>
+            <button onclick="addRow()">Ajouter une ligne</button>
         </div>
     </main>
+    <script type="module" src="../src/index.js"></script>
+    <!--<script src="../dist/main.js"></script>-->
 </body>
 
 </html>
