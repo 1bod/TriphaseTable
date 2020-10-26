@@ -12,11 +12,55 @@
 </head>
 
 <body>
-    <div id="messages">
-        <div id="messageContent"><a href="#" id="dismiss"
-                onclick="this.parentNode.classList.remove('active')">&times;</a>
+    <div id="hovers">
+        <div id="messageContent"></div>
+        <div id="calcModal">
+            <div class="Mtop">
+                <span class="Mtitle">Calcul de section de câble électrique</span>
+                <a href="#" id="dismissMod"
+                    onclick="this.parentNode.parentNode.parentNode.classList.remove('activeMod')">&times;</a>
+                <hr>
+            </div>
+            <div class="Mcontent">
+                <table>
+                    <tr>
+                        <td><label for="U">Tension=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="230" id="U"> <Var>V</Var></td>
+                    </tr>
+                    <tr>
+                        <td><label for="dU">Chute de tension=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="3" id="dU"> <Var>%</Var></td>
+                    </tr>
+                    <tr>
+                        <td>Chute de tension relative : </td>
+                        <td class="left"><span id="chuteDeTensionRel">6.90</span> V</td>
+                    </tr>
+                    <tr>
+                        <td><label for="roh">ρ=</label></td>
+                        <td class="left"><input onchange="section()" list="resistivityList" id="roh"
+                                value="0.023 (Cuivre)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="L">Longueur=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="20" id="L"> <Var>m</Var></td>
+                    </tr>
+                    <tr>
+                        <td><label for="I">Tension=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="1" id="I"> <Var>A</Var></td>
+                    </tr>
+                    <tr>
+                        <td>Section minimum :</td>
+                        <td class="left"><span id="Result">0.13</span> <var>mm</var></td>
+                    </tr>
+                </table>
+                <button class="button" onclick="section()">Recalculer</button>
+            </div>
+            <datalist id="resistivityList">
+                <option value="0.023 (Cuivre)">
+                <option value="0.037 (Aluminium)">
+            </datalist>
         </div>
-
+    </div>
     </div>
     <nav>
         <div class="left">
@@ -28,7 +72,9 @@
         </div>
 
         <div class="right">
-            <div class="FM"><a title="Soon" onclick="showError('Soon...')">Calcul section de cable</a></div>
+            <div class="FM"><a onclick="document.getElementById('hovers').classList.add('activeMod')">Calcul section de
+                    cable</a>
+            </div>
         </div>
     </nav>
     <table id="headtable">

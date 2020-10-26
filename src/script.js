@@ -1,4 +1,3 @@
-//document.getElementById('maintable').insertAdjacentHTML('beforeend','<tr class="mrow"><td contenteditable></td><td id="P1-'+NRP1ID+'"></td><td id="P2-'+NRP2ID+'"></td><td id="P3-'+NRP3ID+'"></td><td><div class="del">&times;</div></td></tr>')
 var simplevar = 0
 
 function addTRow() {
@@ -119,7 +118,21 @@ function importTable(table) {
 }
 
 function showError(message) {
-    console.error(message);
-    document.getElementById('messageContent').innerHTML = message + '    <a href="#" id="dismiss"onclick="this.parentNode.classList.remove(\'active\')">&times;</a>'
-    document.getElementById('messageContent').classList.add("active")
+    console.error(message)
+    document.getElementById('messageContent').innerHTML = message + '    <a href="#" id="dismissMes"onclick="this.parentNode.parentNode.classList.remove(\'activeMes\')">&times;</a>'
+    document.getElementById('messageContent').parentNode.classList.add("activeMes")
+}
+
+function section() {
+    let T = document.getElementById("U").value
+    let dU = document.getElementById("dU").value
+    let TRel = parseFloat(document.getElementById("chuteDeTensionRel").innerHTML)
+    let rohtxt = document.getElementById("roh").value
+    let roh = rohtxt == "0.037 (Aluminium)" ? 0.037 : 0.023
+    let L = document.getElementById("L").value
+    let I = document.getElementById("I").value
+    TRel = (dU / 100) * T
+    document.getElementById("chuteDeTensionRel").innerHTML = TRel.toFixed(2)
+    result = (roh * 2 * L * I) / TRel
+    document.getElementById("Result").innerHTML = result.toFixed(2)
 }

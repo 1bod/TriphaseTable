@@ -7,7 +7,7 @@ body {
         Helvetica,
         sans-serif;
     font-size: 1em;
-
+    overflow: hidden;
 }
 
 td,
@@ -35,19 +35,7 @@ table {
     text-align: left;
 }
 
-input[type="number"] {
-    background: none;
-    border: none;
-    font: inherit;
-    width: 80%;
-    text-align: right;
 
-    &.P1,
-    &.P2,
-    &.P3 {
-        width: 60%;
-    }
-}
 
 .NewbuttonContainer {
     position: fixed;
@@ -73,7 +61,7 @@ input[type="number"] {
     }
 
     &:hover {
-        border-image-width: 10px;
+        border-image-width: 10px !important;
     }
 }
 
@@ -102,6 +90,20 @@ input[type="number"] {
 #maintable {
     width: 100vw;
     padding: auto;
+
+    input[type="number"] {
+        background: none;
+        border: none;
+        font: inherit;
+        width: 80%;
+        text-align: right;
+
+        &.P1,
+        &.P2,
+        &.P3 {
+            width: 60%;
+        }
+    }
 }
 
 .title {
@@ -182,38 +184,121 @@ nav {
     margin-top: 7vh;
 }
 
-#messages {
+#hovers {
+    top: -100%;
     z-index: 10000;
     width: 100vw;
+    height: 100vh;
     text-align: right;
     font-size: 1.1em;
     position: fixed;
+    overflow: hidden;
 
+
+    &.activeMes {
+        top: 0;
+
+        #messageContent {
+            opacity: 1;
+            display: inline-block;
+
+            #dismissMes,
+            #dismissMod {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.activeMod {
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+
+        #calcModal {
+            display: block;
+        }
+    }
 
     #messageContent {
-        display: inline;
+        display: none;
         opacity: 0;
         color: #d00;
         background-color: #faa;
         border: #d00 1px solid;
         border-radius: 3px;
         padding: .5em;
-        transition: .5s;
-        margin: 3vw;
+        transition: .5s opacity;
+        margin: 2vw;
+        position: fixed;
 
-        &.active {
-            opacity: 1;
-            display: inline;
-            top: auto;
+    }
 
-            #dismiss {
-                cursor: pointer;
+    #calcModal {
+        display: none;
+        margin: 15% auto;
+        padding: 1vw;
+        background-color: #fff;
+        border: 1px solid #000;
+        border-radius: 10px;
+        width: 80%;
+        font-size: 1.2em;
+
+
+
+        input {
+            background: none;
+            border: none;
+            font: inherit;
+            width: 8vw;
+            text-align: right;
+        }
+
+        .Mtop {
+            font-size: 1.5em;
+
+            hr {
+                border-top: #222 solid 1px;
             }
+        }
+
+        .Mtitle {
+            text-align: left;
+            display: block;
+            float: left;
+        }
+
+        .Mcontent {
+            text-align: center;
+
+            table,
+            td,
+            tr {
+                border: none !important;
+                width: auto !important;
+                min-width: 1vw;
+                text-align: right;
+
+                .left {
+                    text-align: left;
+                }
+            }
+
+            button {
+                font-size: 1em;
+                border-image: linear-gradient(40deg, #06beb6, #48b1bf) 4/4px;
+
+                color: #06beb6;
+            }
+        }
+
+        #dismissMod {
+
+            text-align: right;
         }
     }
 
-    #dismiss {
-        text-decoration: none;
+    #dismissMes,
+    #dismissMod {
+        text-decoration: none !important;
         cursor: default;
 
         &:hover {
@@ -222,12 +307,12 @@ nav {
 
         &:visited {
             text-decoration: none;
-            color: #d00;
+            color: #000;
         }
 
         &:not(:visited) {
             text-decoration: none;
-            color: #d00;
+            color: #000;
         }
     }
 }
