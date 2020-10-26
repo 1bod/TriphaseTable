@@ -3,7 +3,7 @@ body {
   background-size: clip;
   color: black;
   font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 td,
@@ -16,16 +16,11 @@ table {
   vertical-align: middle;
   text-align: center;
   padding: 3px;
+  overflow: hidden;
 }
 
-th {
-  position: -webkit-sticky;
-  position: sticky;
-}
-
-main {
-  padding: 1vh;
-  empty-cells: show;
+table {
+  width: 100vw;
 }
 
 .txtright {
@@ -40,44 +35,196 @@ input[type="number"] {
   background: none;
   border: none;
   font: inherit;
-  max-width: 3em;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 80%;
+  text-align: right;
 }
 
-.buttonContainer {
+input[type="number"].P1, input[type="number"].P2, input[type="number"].P3 {
+  width: 60%;
+}
+
+.NewbuttonContainer {
   position: fixed;
   bottom: 1vh;
   left: 1vh;
 }
 
-.buttonContainer button.button {
-  font-size: 3vh;
-  -o-border-image: linear-gradient(26deg, #5433ff, #20bdff, #a5fecb) 4/4px;
-     border-image: linear-gradient(26deg, #5433ff, #20bdff, #a5fecb) 4/4px;
-  color: #5ac1ee;
+.button {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-appearance: button;
+     -moz-appearance: button;
+          appearance: button;
+  font-size: 1.3em;
   padding: 1vh 2vw;
   -webkit-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
+  margin: .2em;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.buttonContainer button.button:hover {
+.button.T, .button.M {
+  -o-border-image: linear-gradient(26deg, #5433ff, #20bdff, #a5fecb) 4/4px;
+     border-image: linear-gradient(26deg, #5433ff, #20bdff, #a5fecb) 4/4px;
+  color: #5ac1ee;
+}
+
+.button:hover {
   border-image-width: 10px;
-}
-
-.wattage {
-  text-align: right;
 }
 
 @media print {
   button {
     display: none !important;
   }
+  div.del,
+  td.delP {
+    display: none;
+    empty-cells: hide;
+    width: 0%;
+    border: none;
+    cursor: pointer;
+  }
 }
 
 .del:hover {
   cursor: pointer;
   font-weight: 600;
+}
+
+#maintable {
+  width: 100vw;
+  padding: auto;
+}
+
+.title {
+  width: 100%;
+  border: none;
+  font-size: 2em;
+  text-align: center;
+}
+
+nav {
+  top: 0;
+  background-color: #152d30;
+  -webkit-transition: .3s;
+  transition: .3s;
+  width: 100vw;
+  position: fixed;
+  height: 5vh;
+}
+
+nav:hover {
+  background-color: #152030;
+}
+
+nav .left {
+  float: left;
+  text-align: left;
+  left: 1vw;
+}
+
+nav .right {
+  float: right;
+  text-align: right;
+  right: 1vw;
+}
+
+nav .FM {
+  display: inline-block;
+  margin: 1em;
+  color: aliceblue;
+  cursor: pointer;
+  -webkit-transition: .1;
+  transition: .1;
+}
+
+nav .FM:hover {
+  font-weight: 500;
+}
+
+nav .FM #download {
+  text-decoration: none;
+}
+
+nav .FM #download:visited {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+nav .FM #download:not(:visited) {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+nav .FM.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  color: aliceblue;
+}
+
+nav .FM.inputfile + label {
+  cursor: pointer;
+  color: aliceblue;
+}
+
+#headtable {
+  margin-top: 7vh;
+}
+
+#messages {
+  z-index: 10000;
+  width: 100vw;
+  text-align: right;
+  font-size: 1.1em;
+  position: fixed;
+}
+
+#messages #messageContent {
+  display: inline;
+  opacity: 0;
+  color: #d00;
+  background-color: #faa;
+  border: #d00 1px solid;
+  border-radius: 3px;
+  padding: .5em;
+  -webkit-transition: .5s;
+  transition: .5s;
+  margin: 3vw;
+}
+
+#messages #messageContent.active {
+  opacity: 1;
+  display: inline;
+  top: auto;
+}
+
+#messages #messageContent.active #dismiss {
+  cursor: pointer;
+}
+
+#messages #dismiss {
+  text-decoration: none;
+  cursor: default;
+}
+
+#messages #dismiss:hover {
+  font-weight: 600;
+}
+
+#messages #dismiss:visited {
+  text-decoration: none;
+  color: #d00;
+}
+
+#messages #dismiss:not(:visited) {
+  text-decoration: none;
+  color: #d00;
 }
 /*# sourceMappingURL=style.css.map */
