@@ -175,10 +175,6 @@ nav .FM.inputfile + label {
   color: aliceblue;
 }
 
-#headtable {
-  margin-top: 7vh;
-}
-
 #hovers {
   top: -100%;
   z-index: 10000;
@@ -311,5 +307,31 @@ nav .FM.inputfile + label {
 #hovers #dismissMod:not(:visited) {
   text-decoration: none;
   color: #000;
+}
+
+.navSpacing {
+  height: 5vh;
+}
+
+#headtable {
+  margin-top: 2vh;
+}
+
+.savedVars {
+  font-size: 1.2em;
+  margin: 2vh;
+}
+
+.savedVars:hover {
+  cursor: pointer;
+}
+
+.savedVars .linkedVars {
+  margin-left: 1vw;
+  display: none;
+}
+
+.savedVars.active .linkedVars {
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */

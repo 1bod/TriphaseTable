@@ -180,10 +180,6 @@ nav {
     }
 }
 
-#headtable {
-    margin-top: 7vh;
-}
-
 #hovers {
     top: -100%;
     z-index: 10000;
@@ -313,6 +309,34 @@ nav {
         &:not(:visited) {
             text-decoration: none;
             color: #000;
+        }
+    }
+}
+
+.navSpacing {
+    height: 5vh;
+}
+
+#headtable {
+    margin-top: 2vh;
+}
+
+.savedVars {
+    font-size: 1.2em;
+    margin: 2vh;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .linkedVars {
+        margin-left: 1vw;
+        display: none;
+    }
+
+    &.active {
+        .linkedVars {
+            display: block;
         }
     }
 }

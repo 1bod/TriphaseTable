@@ -1,4 +1,5 @@
 var simplevar = 0
+var unsaved = false;
 
 function addTRow() {
     simplevar++
@@ -16,7 +17,6 @@ function del(times) {
     times.parentNode.parentNode.remove()
 }
 
-setTimeout(calculs, 1000)
 
 function calculs() {
     P1Total = 0
@@ -42,6 +42,8 @@ function calculs() {
     document.getElementById("totalP1").innerHTML = Number(P1Total).toFixed(0)
     document.getElementById("totalP2").innerHTML = Number(P2Total).toFixed(0)
     document.getElementById("totalP3").innerHTML = Number(P3Total).toFixed(0)
+
+    unsaved = true
 }
 
 function createData() {
@@ -72,7 +74,17 @@ function createData() {
 
     })
     tableJSON.push(table)
-
+    let totVars = []
+    document.querySelectorAll('.linkedVar').forEach(el => {
+        let content = el.innerHTML.split(' = ')
+        let name = _.escape(content[0])
+        let val = parseFloat(content[1].substring(0,(content[1].length - 2)))
+        totVars.push({
+            'name': name,
+            'value': val
+        })
+    })
+    tableJSON.push(totVars)
     save(tableJSON)
 }
 
@@ -113,6 +125,9 @@ function importTable(table) {
                 row.childNodes[3].firstChild.value = obj.values[2]
             }
         })
+        fulltableData[2].forEach(obj => {
+            document.querySelector('.linkedVars').insertAdjacentHTML('beforeend', "<li class='linkedVar'>" + obj.name + " = " + obj.value + "mm</li>")
+        })
     })
     reader.readAsText(table)
 }
@@ -135,4 +150,22 @@ function section() {
     document.getElementById("chuteDeTensionRel").innerHTML = TRel.toFixed(2)
     result = (roh * 2 * L * I) / TRel
     document.getElementById("Result").innerHTML = result.toFixed(2)
+}
+
+//https://stackoverflow.com/questions/11844256/alert-for-unsaved-changes-in-form
+
+
+
+function unloadPage() {
+    if (unsaved) {
+        return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+    }
+}
+
+window.onbeforeunload = unloadPage;
+
+function linkResVar() {
+    let name = prompt("Quel nom voulez vous donner à cette variable")
+    let val = parseFloat(document.getElementById("Result").innerHTML)
+    document.querySelector('.linkedVars').insertAdjacentHTML('beforeend', "<li class='linkedVar'>" + name + " = " + val + "mm</li>")
 }

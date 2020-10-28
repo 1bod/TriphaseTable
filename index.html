@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau triphasé</title>
+
     <script src="src/lodash.js"></script>
     <script src="src/script.js" defer></script>
     <link rel="stylesheet" href="src/reset.css">
@@ -17,7 +18,7 @@
         <div id="calcModal">
             <div class="Mtop">
                 <span class="Mtitle">Calcul de section de câble électrique</span>
-                <a href="#" id="dismissMod"
+                <a id="dismissMod"
                     onclick="this.parentNode.parentNode.parentNode.classList.remove('activeMod')">&times;</a>
                 <hr>
             </div>
@@ -54,6 +55,7 @@
                     </tr>
                 </table>
                 <button class="button" onclick="section()">Recalculer</button>
+                <button class="button" onclick="linkResVar()">Lier la variable au tableau</button>
             </div>
             <datalist id="resistivityList">
                 <option value="0.023 (Cuivre)">
@@ -61,7 +63,7 @@
             </datalist>
         </div>
     </div>
-    </div>
+
     <nav>
         <div class="left">
             <div class="FM">
@@ -77,6 +79,13 @@
             </div>
         </div>
     </nav>
+    <div class="navSpacing"></div>
+    <div class="savedVars">
+        <h3 onclick="this.parentNode.classList.toggle('active')">Variables sauvegardées <b>+</b></h3>
+        <ul class="linkedVars">
+
+        </ul>
+    </div>
     <table id="headtable">
         <tr>
             <th colspan="7"><input type="text" id="title" class="title" placeholder="Titre"></th>
@@ -127,7 +136,6 @@
         <button class="button M" onclick="addMRow()">Nouveau Monophasé</button>
 
     </div>
-
 
 </body>
 
