@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau triphasé</title>
+
+    <script src="src/lodash.js"></script>
+    <script src="src/script.js" defer></script>
+    <link rel="stylesheet" href="src/reset.css">
+    <link rel="stylesheet" href="src/oldstyle.css">
+</head>
+
+<body>
+    <div id="hovers">
+        <div id="messageContent"></div>
+        <div id="calcModal">
+            <div class="Mtop">
+                <span class="Mtitle">Calcul de section de câble électrique</span>
+                <a id="dismissMod"
+                    onclick="this.parentNode.parentNode.parentNode.classList.remove('activeMod')">&times;</a>
+                <hr>
+            </div>
+            <div class="Mcontent">
+                <table>
+                    <tr>
+                        <td><label for="U">Tension=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="230" id="U"> <Var>V</Var></td>
+                    </tr>
+                    <tr>
+                        <td><label for="dU">Chute de tension=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="3" id="dU"> <Var>%</Var></td>
+                    </tr>
+                    <tr>
+                        <td>Chute de tension relative : </td>
+                        <td class="left"><span id="chuteDeTensionRel">6.90</span> V</td>
+                    </tr>
+                    <tr>
+                        <td><label for="roh">ρ=</label></td>
+                        <td class="left"><input onchange="section()" list="resistivityList" id="roh"
+                                value="0.023 (Cuivre)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="L">Longueur=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="20" id="L"> <Var>m</Var></td>
+                    </tr>
+                    <tr>
+                        <td><label for="I">Tension=</label></td>
+                        <td class="left"><input onchange="section()" type="number" value="1" id="I"> <Var>A</Var></td>
+                    </tr>
+                    <tr>
+                        <td>Section minimum :</td>
+                        <td class="left"><span id="Result">0.13</span> <var>mm</var></td>
+                    </tr>
+                </table>
+                <button class="button" onclick="section()">Recalculer</button>
+                <button class="button" onclick="linkResVar()">Lier la variable au tableau</button>
+            </div>
+            <datalist id="resistivityList">
+                <option value="0.023 (Cuivre)">
+                <option value="0.037 (Aluminium)">
+            </datalist>
+        </div>
+    </div>
+
+    <nav>
+        <div class="left">
+            <div class="FM">
+                <a id="download" download="" href="#" onmouseover="createData()" onclick="createData()">Télécharger</a>
+            </div>
+            <input type="file" id="import" name="import" class="FM inputfile" accept="text/json,.json"
+                onchange="importTable(this.files[0])"><label class="FM" for="import">Importer</label>
+        </div>
+
+        <div class="right">
+            <div class="FM"><a onclick="document.getElementById('hovers').classList.add('activeMod')">Calcul section de
+                    cable</a>
+            </div>
+        </div>
+    </nav>
+    <div class="navSpacing"></div>
+    <div class="savedVars">
+        <h3 onclick="this.parentNode.classList.toggle('active')">Variables sauvegardées <b>+</b></h3>
+        <ul class="linkedVars">
+
+        </ul>
+    </div>
+    <table id="headtable">
+        <tr>
+            <th colspan="7"><input type="text" id="title" class="title" placeholder="Titre"></th>
+        </tr>
+        <tr>
+
+            <th rowspan="3">Désignation</th>
+            <th class="txtright" colspan="2">
+                Total =
+            </th>
+            <th class="total">
+                <span id="totalN">0</span>W
+            </th>
+            <th><span id="totalP1">0</span>W</th>
+            <th><span id="totalP2">0</span>W</th>
+            <th><span id="totalP3">0</span>W</th>
+
+        </tr>
+        <tr>
+
+            <td class="mono">
+                Mono. phase 1
+            </td>
+            <td class="mono">
+                Mono. phase 2
+            </td>
+            <td class="mono">
+                Mono. phase 3
+            </td>
+            <td rowspan="2">Phase 1</td>
+            <td rowspan="2">Phase 2</td>
+            <td rowspan="2">Phase 3</td>
+
+        </tr>
+        <tr>
+
+            <td class="triphase" colspan="3">
+                Triphasé
+            </td>
+        </tr>
+
+    </table>
+    <table id="maintable">
+
+    </table>
+    <div class="NewbuttonContainer">
+        <button class="button T" onclick="addTRow()">Nouveau Triphasé</button>
+        <button class="button M" onclick="addMRow()">Nouveau Monophasé</button>
+
+    </div>
+
+</body>
+
+</html>
