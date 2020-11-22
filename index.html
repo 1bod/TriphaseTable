@@ -4,34 +4,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau triphasé</title>
-    <script src="src/lodash.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Tableau Triphasé</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
     <script src="src/script.js" defer></script>
     <link rel="stylesheet" href="src/reset.css">
     <link rel="stylesheet" href="src/style.css">
+
 </head>
 
 <body>
-    <header>
-        <div id="menuOpen"><a href="#" onclick="document.querySelector('.left').classList.add('active')">MENU</a></div>
-        <div id="pageTitle">Triphase Table</div>
-        <div id="navRight"><a href="#" onclick="document.querySelector('.right').classList.add('active')">TOOLS</a>
+    <div class="loader">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
+    </div>
+    <header>
+        <div class="tableTitle">
+            <input type="text" id="title" class="title" placeholder="Titre">
+        </div>
+        <div><button class="main" onclick="addTRow()">Triphasé</button><button class="main"
+                onclick="addMRow()">Monophasé</button></div>
+        <div id="pageTitle">Tableau Triphasé</div>
+
+
     </header>
-    <nav class="left">
-        <a href="#" onclick="document.querySelector('.left').classList.remove('active')"><img src="assets/Times.svg"
-                alt="Fermer" height="15px"></a>
-        <ul>
-            <li><a href="#">Enregistrer</a></li>
-            <li><a href="#">Ouvrir</a></li>
-        </ul>
+    <nav id="left">
+        <div class="icons">
+
+            <div><a class="material-icons md-24" id="menuToggle" title="Menu"
+                    onclick="document.getElementById('left').classList.toggle('active');this.classList.toggle('active')">menu</a>
+            </div>
+            <div><a class="material-icons md-24" title="Enregistrer">cloud_download</a></div>
+            <div><a class="material-icons md-24" title="Ouvrir">cloud_upload</a></div>
+            <div><a class="material-icons md-24" title="Variables">view_list</a></div>
+            <div><a class="material-icons md-24" title="Section de cable">calculate</a></div>
+            <div><a class="material-icons md-24" title="Thème">brightness_medium</a></div>
+
+        </div>
+        <div class="iconsText">
+            <div><a href="#"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Menu</a>
+            </div>
+            <div><a href="#"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Télécharger</a>
+            </div>
+            <div><a href="#"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Uploader</a>
+            </div>
+            <div><a href="#"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Variables</a>
+            </div>
+            <div><a href="#"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Section
+                    de cable</a></div>
+            <div><a href="#"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Thème</a>
+            </div>
+        </div>
     </nav>
-    <nav class="right"><a href="#" onclick="document.querySelector('.right').classList.remove('active')"><img
-                src="assets/Times.svg" alt="Fermer" height="15px"></a>
-        <ul>
-            <li><a href="#">Calcul de section de cable</a></li>
-        </ul>
-    </nav>
+
+    <main>
+        <section class="Table">
+            <h2 class="title">Appareils</h2>
+            <h4 class="subtitle">Tous les appareils et leurs consommations.</h4>
+            <div class="box">
+                <div class="icon">
+                    <div class="material-icons md-36">menu</div>
+                </div>
+                <span class="consumption"><input type="number">W</span>
+                <span class="consumptionSub">consommation</span>
+            </div>
+            <div class="box">
+                <div class="icon">
+                    <div class="material-icons md-36">horizontal_rule</div>
+                    <span class="consumption"><input type="number">W</span>
+                    <span class="consumptionSub">consommation phase 1</span>
+                    <span class="consumption"><input type="number">W</span>
+                    <span class="consumptionSub">consommation phase 2</span>
+                    <span class="consumption"><input type="number">W</span>
+                    <span class="consumptionSub">consommation phase 3</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
 </body>
 
 </html>

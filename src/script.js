@@ -1,3 +1,7 @@
+if (document.readyState == 'complete' || document.readyState == 'interactive') {
+    document.querySelector('.loader').style.display = "none"
+}
+
 var simplevar = 0
 var unsaved = false;
 
@@ -78,7 +82,7 @@ function createData() {
     document.querySelectorAll('.linkedVar').forEach(el => {
         let content = el.innerHTML.split(' = ')
         let name = _.escape(content[0])
-        let val = parseFloat(content[1].substring(0,(content[1].length - 2)))
+        let val = parseFloat(content[1].substring(0, (content[1].length - 2)))
         totVars.push({
             'name': name,
             'value': val
