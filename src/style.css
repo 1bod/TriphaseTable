@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@200;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
 .material-icons {
   color: #666666;
 }
@@ -303,6 +304,10 @@ nav#left .icons div *.active, nav#left .icons div *:active {
   border-left: #0080ff 2px solid;
 }
 
+nav#left .icons div *:hover {
+  color: #555;
+}
+
 nav#left .icons div:first-child {
   padding-bottom: 50px;
 }
@@ -373,9 +378,37 @@ main {
   padding: 8vh 10vw;
 }
 
-main .Table .Titleh2 {
-  font-family: 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
+main h2 {
+  color: #222;
+  font-family: 'Ubuntu', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 58px;
+}
+
+main h4 {
+  color: #444;
+  font-family: 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
+  margin-top: .5vh;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+main .devices {
+  display: -ms-grid;
+  display: grid;
+  grid: auto / 4;
+  padding: 1.5vw;
+  grid-auto-flow: row dense;
+}
+
+main .devices .box {
+  background-color: #fdfdfd;
+  border-radius: 20px;
+  width: 520px;
+}
+
+main .devices .box:hover {
+  -webkit-box-shadow: #444 0 2vh 100px 1vh;
+          box-shadow: #444 0 2vh 100px 1vh;
 }
 /*# sourceMappingURL=style.css.map */
