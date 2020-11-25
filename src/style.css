@@ -240,6 +240,7 @@ header .tableTitle input:hover {
 }
 
 nav#left {
+  z-index: 100;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -327,6 +328,7 @@ nav#left .iconsText {
   -ms-grid-rows: (auto)[5] 1fr;
       grid-template-rows: repeat(5, auto) 1fr;
   height: 100vh;
+  color: #1a1a1a;
 }
 
 nav#left .iconsText div {
@@ -369,12 +371,10 @@ main {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  width: calc(100vw - 85px);
-  left: 85px;
+  margin-left: 85px;
   top: 70px;
   right: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 8vh 10vw;
 }
 
@@ -394,21 +394,43 @@ main h4 {
 }
 
 main .devices {
-  display: -ms-grid;
-  display: grid;
-  grid: auto / 4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   padding: 1.5vw;
-  grid-auto-flow: row dense;
 }
 
 main .devices .box {
+  margin: 5px;
   background-color: #fdfdfd;
   border-radius: 20px;
-  width: 520px;
+  width: 250px;
+  height: 300px;
+  -webkit-transition: all .7s ease-out;
+  transition: all .7s ease-out;
+}
+
+main .devices .box .consumption {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'Ubuntu', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
+  color: #444;
+}
+
+main .devices .box .consumption input {
+  background-color: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+  size: auto;
 }
 
 main .devices .box:hover {
-  -webkit-box-shadow: #444 0 2vh 100px 1vh;
-          box-shadow: #444 0 2vh 100px 1vh;
+  -webkit-box-shadow: 0px 50px 50px 6px rgba(102, 102, 102, 0.3);
+          box-shadow: 0px 50px 50px 6px rgba(102, 102, 102, 0.3);
 }
 /*# sourceMappingURL=style.css.map */
