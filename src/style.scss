@@ -359,6 +359,7 @@ main {
             width: 250px;
             height: 300px;
             transition: all .7s ease-out;
+            text-align: center;
 
             .consumption {
                 font-size: 32px;
@@ -371,12 +372,16 @@ main {
                     sans-serif;
                 color: #444;
 
+                display: flex;
+                align-items: center;
+
                 input {
+                    flex-grow: 1;
                     background-color: transparent;
                     border: none;
                     font: inherit;
                     color: inherit;
-                    size: auto;
+                    text-align: right;
                 }
             }
 

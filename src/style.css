@@ -412,6 +412,7 @@ main .devices .box {
   height: 300px;
   -webkit-transition: all .7s ease-out;
   transition: all .7s ease-out;
+  text-align: center;
 }
 
 main .devices .box .consumption {
@@ -419,14 +420,23 @@ main .devices .box .consumption {
   font-weight: 700;
   font-family: 'Ubuntu', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
   color: #444;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 main .devices .box .consumption input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   background-color: transparent;
   border: none;
   font: inherit;
   color: inherit;
-  size: auto;
+  text-align: right;
 }
 
 main .devices .box:hover {
