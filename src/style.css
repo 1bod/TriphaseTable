@@ -339,6 +339,7 @@ nav#left .iconsText div {
 nav#left .iconsText div * {
   font-size: 18px;
   line-height: 52px;
+  color: #1a1a1a;
 }
 
 nav#left .iconsText div:first-child {
@@ -415,28 +416,54 @@ main .devices .box {
   text-align: center;
 }
 
+main .devices .box .icon {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+}
+
+main .devices .box .icon * {
+  font-size: 24px;
+}
+
+main .devices .box .icon .mic {
+  background-color: rgba(33, 129, 226, 0.1);
+  border-radius: 70px;
+  aspect-ratio: 1 / 1;
+  place-items: center;
+  font-size: 36px;
+  color: #2181e2 !important;
+}
+
 main .devices .box .consumption {
   font-size: 32px;
   font-weight: 700;
   font-family: 'Ubuntu', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
   color: #444;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  place-items: center start;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 }
 
 main .devices .box .consumption input {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  place-self: center end;
+  float: right;
+  width: 37px;
   background-color: transparent;
   border: none;
   font: inherit;
   color: inherit;
   text-align: right;
+}
+
+main .devices .box .consumptionSub {
+  font-size: 14px;
+  color: #666;
+  font-weight: 700;
 }
 
 main .devices .box:hover {

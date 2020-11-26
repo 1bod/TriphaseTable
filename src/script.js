@@ -2,8 +2,8 @@ if (document.readyState == 'complete' || document.readyState == 'interactive') {
     document.querySelector('.loader').style.display = "none"
 }
 
-function change(el) {
-    el.style.width = ((el.value.length + 1) * 12) + 'px';
+function changed(el) {
+    el.style.width = (el.value.length * 23+10) + 'px';
 }
 
 var simplevar = 0
