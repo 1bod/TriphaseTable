@@ -3,6 +3,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
 .material-icons {
   color: #666666;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .material-icons.md-18 {
@@ -147,6 +151,9 @@ body {
   color: #1a1a1a;
   font-family: 'Nunito', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
   font-size: 1em;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
@@ -414,6 +421,18 @@ main .devices .box {
   -webkit-transition: all .7s ease-out;
   transition: all .7s ease-out;
   text-align: center;
+  display: -ms-grid;
+  display: grid;
+}
+
+main .devices .box.tri {
+  -ms-grid-rows: 1.5fr 1fr 1fr 1fr;
+      grid-template-rows: 1.5fr 1fr 1fr 1fr;
+}
+
+main .devices .box.mono {
+  -ms-grid-rows: 4fr (1fr)[7];
+      grid-template-rows: 4fr repeat(7, 1fr);
 }
 
 main .devices .box .icon {
@@ -435,6 +454,31 @@ main .devices .box .icon .mic {
   place-items: center;
   font-size: 36px;
   color: #2181e2 !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
+main .devices .box .icon .drag:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+main .devices .box .icon .drag:hover:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+main .devices .box .icon .drag:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+main .devices .box .deviceName {
+  background-color: transparent;
+  font-size: 18px;
+  font-family: 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
+  text-align: center;
+  border: none;
 }
 
 main .devices .box .consumption {
@@ -460,14 +504,64 @@ main .devices .box .consumption input {
   text-align: right;
 }
 
-main .devices .box .consumptionSub {
+main .devices .box:hover {
+  -webkit-box-shadow: 0px 50px 50px 6px rgba(102, 102, 102, 0.3);
+          box-shadow: 0px 50px 50px 6px rgba(102, 102, 102, 0.3);
+}
+
+main .devices .new {
+  margin: 5px;
+  border-radius: 20px;
+  width: 250px;
+  height: 300px;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+}
+
+main .devices .new > div {
+  margin: 10px;
+  place-items: center;
+  display: -ms-grid;
+  display: grid;
+  border: #b9b9cf 5px solid;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #444;
+  background: transparent;
+  -webkit-transition: background .3s;
+  transition: background .3s;
+}
+
+main .devices .new > div:hover {
+  background: rgba(185, 185, 207, 0.2);
+  cursor: pointer;
+}
+
+main section {
+  margin-bottom: 10vh;
+}
+
+main section .sub {
   font-size: 14px;
   color: #666;
   font-weight: 700;
 }
 
-main .devices .box:hover {
-  -webkit-box-shadow: 0px 50px 50px 6px rgba(102, 102, 102, 0.3);
-          box-shadow: 0px 50px 50px 6px rgba(102, 102, 102, 0.3);
+main .totaux {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  -ms-grid-columns: 2fr (1fr)[3];
+      grid-template-columns: 2fr repeat(3, 1fr);
+  padding: 2vw;
+}
+
+main .totaux .totalC {
+  color: #222;
+  font-family: 'Ubuntu', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 38px;
 }
 /*# sourceMappingURL=style.css.map */

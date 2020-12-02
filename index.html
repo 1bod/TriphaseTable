@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -26,8 +26,7 @@
         <div class="tableTitle">
             <input type="text" id="title" class="title" placeholder="Titre">
         </div>
-        <div><button class="main" onclick="addTRow()">Triphasé</button><button class="main"
-                onclick="addMRow()">Monophasé</button></div>
+
         <div id="pageTitle">Tableau Triphasé</div>
 
 
@@ -68,35 +67,75 @@
     </nav>
 
     <main>
-        <section class="Table">
+        <section class="totalS">
+            <h2>Totaux</h2>
+            <h4 class="subtitle">Totaux du <a href="#Table">tableau de calcul</a>.</h4>
+            <div class="totaux">
+                <div>
+                    <span class="totalC">0 W</span><br>
+                    <span class="sub">Total général</span>
+                </div>
+                <div>
+                    <span class="totalC">0 W</span><br>
+                    <span class="sub">Total phase 1</span>
+                </div>
+                <div>
+                    <span class="totalC">0 W</span><br>
+                    <span class="sub">Total phase 2</span>
+                </div>
+                <div>
+                    <span class="totalC">0 W</span><br>
+                    <span class="sub">Total phase 3</span>
+                </div>
+            </div>
+        </section>
+        <section class="Table" id="Table">
             <h2>Appareils</h2>
             <h4 class="subtitle">Tous les appareils et leurs consommations.</h4>
             <div class="devices">
-                <div class="box">
+                <div class="box tri">
                     <div class="icon">
-                        <div class="material-icons">drag_indicator</div>
+                        <a>
+                            <div class="material-icons drag">drag_indicator</div>
+                        </a>
+
                         <div class="material-icons mic">dehaze</div>
-                        <div class="material-icons">delete</div>
+
+
+                        <div class="material-icons del">delete</div>
+
                     </div>
+                    <input type="text" class="deviceName" placeholder="Nom de l'appareil">
                     <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="consumptionSub">consommation</span>
+                    <span class="sub">consommation</span>
                 </div>
-                <div class="box">
+                <div class="box mono">
                     <div class="icon">
                         <div class="material-icons mic">horizontal_rule</div>
                     </div>
+                    <input type="text" class="deviceName" placeholder="Nom de l'appareil">
                     <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="consumptionSub">consommation phase 1</span>
+                    <span class="sub">consommation phase 1</span>
                     <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="consumptionSub">consommation phase 2</span>
+                    <span class="sub">consommation phase 2</span>
                     <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="consumptionSub">consommation phase 3</span>
+                    <span class="sub">consommation phase 3</span>
 
+                </div>
+                <div class="new">
+                    <div class="trip" onclick="addTRow()">
+                        <div><a class="material-icons md-18">add</a></div>
+                        <span>Nouvel appareil triphasé</span>
+                    </div>
+                    <div class="monop" onclick="addMRow()">
+                        <div><a class="material-icons md-18">add</a></div>
+                        <span>Nouvel appareil monophasé</span>
+
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
 </body>
 
 </html>

@@ -4,6 +4,7 @@
 
 .material-icons {
     color: #666666;
+    user-select: none;
 
     &.md-18 {
         font-size: 18px;
@@ -112,6 +113,10 @@ body {
         Helvetica,
         sans-serif;
     font-size: 1em;
+
+}
+
+html {
     scroll-behavior: smooth;
 }
 
@@ -361,6 +366,17 @@ main {
             height: 300px;
             transition: all .7s ease-out;
             text-align: center;
+            display: grid;
+
+            &.tri {
+                grid-template-rows: 1.5fr 1fr 1fr 1fr;
+
+            }
+
+            &.mono {
+                grid-template-rows: 4fr repeat(7, 1fr);
+
+            }
 
             .icon {
                 display: grid;
@@ -381,8 +397,38 @@ main {
                     place-items: center;
                     font-size: 36px;
                     color: #2181e2 !important;
+                    text-align: center;
+                    vertical-align: middle;
                 }
 
+                .drag {
+                    &:hover {
+                        cursor: grab;
+
+                        &:active {
+                            cursor: grabbing;
+                        }
+                    }
+
+                    &:active {
+                        cursor: grabbing;
+                    }
+                }
+
+                .del {}
+
+            }
+
+            .deviceName {
+                background-color: transparent;
+                font-size: 18px;
+                font-family: 'Roboto',
+                    'Segoe UI',
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+                text-align: center;
+                border: none;
             }
 
             .consumption {
@@ -415,16 +461,67 @@ main {
                 }
             }
 
-            .consumptionSub {
-                font-size: 14px;
-                color: #666;
-                font-weight: 700;
-            }
+
 
             &:hover {
                 box-shadow: 0px 50px 50px 6px rgba($color: #666, $alpha: 0.3);
             }
         }
+
+        .new {
+            margin: 5px;
+            border-radius: 20px;
+            width: 250px;
+            height: 300px;
+            text-align: center;
+            display: grid;
+
+            &>div {
+                margin: 10px;
+                place-items: center;
+                display: grid;
+                border: #b9b9cf 5px solid;
+                border-radius: 15px;
+                font-weight: 700;
+                font-size: 16px;
+                color: #444;
+                background: transparent;
+                transition: background .3s;
+
+                &:hover {
+                    background: rgba($color: #b9b9cf, $alpha: 0.2);
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
+    section {
+        margin-bottom: 10vh;
+
+        .sub {
+            font-size: 14px;
+            color: #666;
+            font-weight: 700;
+        }
+    }
+
+    .totaux {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        padding: 2vw;
+
+        .totalC {
+            color: #222;
+            font-family: 'Ubuntu',
+                'Roboto',
+                'Segoe UI',
+                Arial,
+                Helvetica,
+                sans-serif;
+            font-weight: 700;
+            font-size: 38px;
+        }
+    }
 }
