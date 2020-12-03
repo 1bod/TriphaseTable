@@ -15,13 +15,13 @@ var unsaved = false;
 
 function addTRow() {
     simplevar++
-    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="box tri"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">dehaze</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input onchange="changed(this);calculs()" value="0" class="T" type="number">W</span><span class="sub">consommation</span></div>')
+    document.getElementByClass('new').item(0).insertAdjacentHTML('beforestart', '<tr id="' + simplevar + '" class="trow row"><td class="rname" contenteditable></td><td colspan="3"><input onchange="calculs()" value="0" class="T" name="T" type="number" min="0">W</td></td><td class="delP"><div class="del" onclick="del(this)" title="Supprimer cette ligne">&times;</div></td></tr>')
     return simplevar
 }
 
 function addMRow() {
     simplevar++
-    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="box mono"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">horizontal_rule</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input class="mnum" onchange="changed(this);calculs()" value="0" type="number">W</span><span class="sub">consommation sur la<select class="mph" name="phase" class="phase"><option value="1" selected>phase 1</option><option value="2">phase 2</option><option value="3">phase 3</option></select></span></div>')
+    document.getElementByClass('new').item(0).insertAdjacentHTML('beforestart', '<div id="' + simplevar + '" class="box mono"><td class="rname" contenteditable></td><td><input onchange="calculs()" value="0" class="P1" name="P1" type="number" min="0">W</td><td><input onchange="calculs()" value="0" class="P2" name="P2" type="number" min="0">W</td><td><input onchange="calculs()" value="0" class="P3" name="P3" type="number" min="0">W</td><td class="delP"><div class="del" onclick="del(this)" title="Supprimer cette ligne">&times;</div></td></div>')
     return simplevar
 }
 
@@ -39,15 +39,9 @@ function calculs() {
         P2Total += Number(triphase.value / 3)
         P3Total += Number(triphase.value / 3)
     })
-    document.querySelectorAll('.mph').forEach(element => {
-        phase = element.value
-        valh = el.parentNode.previousSibling.firstChild.value
-        document.querySelectorAll('.mnum').forEach(el => {
-            if()
-        P1Total += Number(el.value)
+    document.querySelectorAll('.P1').forEach(P1 => {
+        P1Total += Number(P1.value)
     })
-    })
-    
     document.querySelectorAll('.P2').forEach(P2 => {
         P2Total += Number(P2.value)
     })

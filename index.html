@@ -93,13 +93,15 @@
             <h2>Appareils</h2>
             <h4 class="subtitle">Tous les appareils et leurs consommations.</h4>
             <div class="devices">
-                <div class="box tri">
+                <!--<div class="box tri">
                     <div class="icon">
                         <a>
                             <div class="material-icons drag">drag_indicator</div>
                         </a>
 
-                        <div class="material-icons mic">dehaze</div>
+                        <div class="mic">
+                            <div class="material-icons">dehaze</div>
+                        </div>
 
 
                         <div class="material-icons del">delete</div>
@@ -111,24 +113,32 @@
                 </div>
                 <div class="box mono">
                     <div class="icon">
-                        <div class="material-icons mic">horizontal_rule</div>
+                        <a>
+                            <div class="material-icons drag">drag_indicator</div>
+                        </a>
+                        <div class="mic">
+                            <div class="material-icons">horizontal_rule</div>
+                        </div>
+
+
+                        <div class="material-icons del">delete</div>
                     </div>
                     <input type="text" class="deviceName" placeholder="Nom de l'appareil">
                     <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="sub">consommation phase 1</span>
-                    <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="sub">consommation phase 2</span>
-                    <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="sub">consommation phase 3</span>
+                    <span class="sub">consommation sur la<select name="phase" class="phase">
+                            <option value="1" selected>phase 1</option>
+                            <option value="2" selected>phase 2</option>
+                            <option value="3" selected>phase 3</option>
+                        </select></span>
 
-                </div>
+                </div>-->
                 <div class="new">
                     <div class="trip" onclick="addTRow()">
-                        <div><a class="material-icons md-18">add</a></div>
+                        <div><a class="material-icons md-24">add</a></div>
                         <span>Nouvel appareil triphasé</span>
                     </div>
                     <div class="monop" onclick="addMRow()">
-                        <div><a class="material-icons md-18">add</a></div>
+                        <div><a class="material-icons md-24">add</a></div>
                         <span>Nouvel appareil monophasé</span>
 
                     </div>

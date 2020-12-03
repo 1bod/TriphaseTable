@@ -401,6 +401,14 @@ main h4 {
   font-weight: 300;
 }
 
+main h4 a {
+  color: #444;
+}
+
+main h4 a:hover {
+  color: #333;
+}
+
 main .devices {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -425,14 +433,9 @@ main .devices .box {
   display: grid;
 }
 
-main .devices .box.tri {
-  -ms-grid-rows: 1.5fr 1fr 1fr 1fr;
-      grid-template-rows: 1.5fr 1fr 1fr 1fr;
-}
-
-main .devices .box.mono {
-  -ms-grid-rows: 4fr (1fr)[7];
-      grid-template-rows: 4fr repeat(7, 1fr);
+main .devices .box.tri, main .devices .box.mono {
+  -ms-grid-rows: 1.5fr (1fr)[3];
+      grid-template-rows: 1.5fr repeat(3, 1fr);
 }
 
 main .devices .box .icon {
@@ -449,13 +452,20 @@ main .devices .box .icon * {
 
 main .devices .box .icon .mic {
   background-color: rgba(33, 129, 226, 0.1);
-  border-radius: 70px;
-  aspect-ratio: 1 / 1;
-  place-items: center;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  place-items: center stretch;
+}
+
+main .devices .box .icon .mic .material-icons {
+  width: 100%;
+  text-align: center;
   font-size: 36px;
   color: #2181e2 !important;
-  text-align: center;
-  vertical-align: middle;
 }
 
 main .devices .box .icon .drag:hover {
@@ -471,6 +481,10 @@ main .devices .box .icon .drag:hover:active {
 main .devices .box .icon .drag:active {
   cursor: -webkit-grabbing;
   cursor: grabbing;
+}
+
+main .devices .box .icon .del {
+  cursor: pointer;
 }
 
 main .devices .box .deviceName {
@@ -532,11 +546,19 @@ main .devices .new > div {
   background: transparent;
   -webkit-transition: background .3s;
   transition: background .3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 main .devices .new > div:hover {
   background: rgba(185, 185, 207, 0.2);
   cursor: pointer;
+}
+
+main .devices .new > div:active {
+  background: rgba(185, 185, 207, 0.5);
 }
 
 main section {
@@ -547,6 +569,13 @@ main section .sub {
   font-size: 14px;
   color: #666;
   font-weight: 700;
+}
+
+main section .sub .phase {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background-color: transparent;
 }
 
 main .totaux {

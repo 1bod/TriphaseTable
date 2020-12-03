@@ -350,13 +350,20 @@ main {
         margin-top: .5vh;
         font-size: 18px;
         font-weight: 300;
+
+        a {
+            color: #444;
+
+            &:hover {
+                color: #333;
+            }
+        }
     }
 
     .devices {
         display: flex;
         flex-flow: row wrap;
         padding: 1.5vw;
-
 
         .box {
             margin: 5px;
@@ -368,13 +375,9 @@ main {
             text-align: center;
             display: grid;
 
-            &.tri {
-                grid-template-rows: 1.5fr 1fr 1fr 1fr;
-
-            }
-
+            &.tri,
             &.mono {
-                grid-template-rows: 4fr repeat(7, 1fr);
+                grid-template-rows: 1.5fr repeat(3, 1fr);
 
             }
 
@@ -383,22 +386,24 @@ main {
                 grid-template-columns: repeat(3, 1fr);
                 place-items: center;
 
-
-
-
                 * {
                     font-size: 24px;
                 }
 
                 .mic {
                     background-color: transparentize($color: #2181e2, $amount: 0.9);
-                    border-radius: 70px;
-                    aspect-ratio: 1 / 1;
-                    place-items: center;
-                    font-size: 36px;
-                    color: #2181e2 !important;
-                    text-align: center;
-                    vertical-align: middle;
+                    border-radius: 50%;
+                    height: 50px;
+                    width: 50px;
+                    display: flex;
+                    place-items: center stretch;
+
+                    .material-icons {
+                        width: 100%;
+                        text-align: center;
+                        font-size: 36px;
+                        color: #2181e2 !important;
+                    }
                 }
 
                 .drag {
@@ -415,7 +420,9 @@ main {
                     }
                 }
 
-                .del {}
+                .del {
+                    cursor: pointer;
+                }
 
             }
 
@@ -487,10 +494,15 @@ main {
                 color: #444;
                 background: transparent;
                 transition: background .3s;
+                user-select: none;
 
                 &:hover {
                     background: rgba($color: #b9b9cf, $alpha: 0.2);
                     cursor: pointer;
+                }
+
+                &:active {
+                    background: rgba($color: #b9b9cf, $alpha: 0.5);
                 }
             }
         }
@@ -503,6 +515,13 @@ main {
             font-size: 14px;
             color: #666;
             font-weight: 700;
+
+            .phase {
+                font: inherit;
+                color: inherit;
+                border: none;
+                background-color: transparent;
+            }
         }
     }
 
