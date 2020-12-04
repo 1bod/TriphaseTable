@@ -219,6 +219,7 @@ header .tableTitle input {
   font: 'Segoe UI', 'Nunito', sans-serif;
   font-size: 24px;
   font-weight: 200;
+  background: transparent;
   border-bottom: #e3e3e3 solid 1px;
 }
 
@@ -272,6 +273,15 @@ nav#left.active {
 
 nav#left * {
   padding: 10px;
+}
+
+nav#left #import,
+nav#left #import2 {
+  display: none;
+}
+
+nav#left label {
+  padding: 0;
 }
 
 nav#left .icons {
@@ -571,11 +581,18 @@ main section .sub {
   font-weight: 700;
 }
 
-main section .sub .phase {
+main section .sub .mph {
   font: inherit;
   color: inherit;
   border: none;
   background-color: transparent;
+  border-radius: 2px;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+main section .sub .mph:hover {
+  background-color: #eee;
 }
 
 main .totaux {

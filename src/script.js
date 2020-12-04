@@ -21,12 +21,13 @@ function addTRow() {
 
 function addMRow() {
     simplevar++
-    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="box mono"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">horizontal_rule</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input class="mnum" onchange="changed(this);calculs()" value="0" type="number">W</span><span class="sub">consommation sur la<select class="mph" name="phase" class="phase"><option value="1" selected>phase 1</option><option value="2">phase 2</option><option value="3">phase 3</option></select></span></div>')
+    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="box mono"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">horizontal_rule</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input class="mnum" onchange="changed(this);calculs()" value="0" type="number">W</span><span class="sub">consommation sur la<select class="mph" name="phase" class="phase" onchange="calculs()"><option value="1" selected>phase 1</option><option value="2">phase 2</option><option value="3">phase 3</option></select></span></div>')
     return simplevar
 }
 
-function del(times) {
-    times.parentNode.parentNode.remove()
+function del(b) {
+    b.parentNode.parentNode.remove()
+    calculs()
 }
 
 
@@ -41,25 +42,26 @@ function calculs() {
     })
     document.querySelectorAll('.mph').forEach(element => {
         phase = element.value
-        valh = el.parentNode.previousSibling.firstChild.value
+        
+        
         document.querySelectorAll('.mnum').forEach(el => {
-            if()
-        P1Total += Number(el.value)
+            valh = el.value
+            if(phase == 1){
+                P1Total += Number(el.value)
+            }else if(phase == 2){
+                P2Total += Number(el.value)
+            }else if(phase == 3){
+                P3Total += Number(el.value)
+            }
+        
     })
-    })
-    
-    document.querySelectorAll('.P2').forEach(P2 => {
-        P2Total += Number(P2.value)
-    })
-    document.querySelectorAll('.P3').forEach(P3 => {
-        P3Total += Number(P3.value)
     })
     GTotal = P1Total + P2Total + P3Total
     // Render
-    document.getElementById("totalN").innerHTML = Number(GTotal).toFixed(0)
-    document.getElementById("totalP1").innerHTML = Number(P1Total).toFixed(0)
-    document.getElementById("totalP2").innerHTML = Number(P2Total).toFixed(0)
-    document.getElementById("totalP3").innerHTML = Number(P3Total).toFixed(0)
+    document.getElementById("totalN").innerHTML = Number(GTotal).toFixed(0) + ' W'
+    document.getElementById("totalP1").innerHTML = Number(P1Total).toFixed(0) + ' W'
+    document.getElementById("totalP2").innerHTML = Number(P2Total).toFixed(0) + ' W'
+    document.getElementById("totalP3").innerHTML = Number(P3Total).toFixed(0) + ' W'
 
     unsaved = true
 }
