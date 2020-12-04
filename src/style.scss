@@ -153,7 +153,7 @@ header {
 
     #pageTitle {
         text-align: right;
-        font: 'Segoe UI', 'Nunito', sans-serif;
+
         font-size: 1.4em;
         margin-right: 2vw;
     }
@@ -171,9 +171,6 @@ header {
             border: none;
             margin: 0;
             padding: 0;
-            font: 'Segoe UI',
-                'Nunito',
-                sans-serif;
             font-size: 24px;
             font-weight: 200;
             background: transparent;
@@ -221,6 +218,10 @@ nav {
             display: none;
         }
 
+        .FM:hover {
+            cursor: pointer;
+        }
+
         label {
             padding: 0;
         }
@@ -240,7 +241,7 @@ nav {
             div {
                 padding: 0;
                 height: 81px;
-
+                color: #666;
 
                 * {
                     border-left: 2px solid transparent;
@@ -307,27 +308,7 @@ nav {
     }
 }
 
-button {
-    &:hover {
-        cursor: pointer;
-    }
 
-    &.main {
-        color: #fdfdfd;
-        background-color: #2181e2;
-        border: none;
-        font-family: 'Nunito',
-            'Segoe UI',
-            Arial,
-            Helvetica,
-            sans-serif;
-        font-weight: bold;
-        font-size: 20px;
-        border-radius: 70px;
-        padding: 6px 13px;
-        margin: auto 2vw;
-    }
-}
 
 main {
     position: relative;
@@ -559,6 +540,76 @@ main {
                 sans-serif;
             font-weight: 700;
             font-size: 38px;
+        }
+    }
+}
+
+a.stdlink {
+    text-decoration: underline;
+    text-decoration-color: transparentize($color: #0080ff, $amount: .8);
+    transition: text-decoration-color .2s;
+
+    &:hover {
+        text-decoration-color: transparentize($color: #0080ff, $amount: .2);
+    }
+}
+
+#Vars {
+
+    .varAdd,
+    .varDel {
+        height: 40px;
+        width: 40px;
+        display: grid;
+        place-items: center stretch;
+        border-radius: 5px;
+        transition: box-shadow .2s;
+
+        .material-icons {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        &:hover {
+            box-shadow: #bbb 0 0 10px -2px;
+        }
+    }
+
+    .nForm,
+    ul li {
+        margin: 5px;
+        border-radius: 7px;
+        padding: 6px;
+        height: 36px;
+        display: inline-flex;
+        place-items: center;
+        transition: background-color .4s ease-out;
+
+        * {
+            margin: 1px 4px;
+        }
+
+        input {
+            width: 13vw;
+            border: none;
+            transition: box-shadow .2s;
+            height: 40px;
+            background-color: transparent;
+            border-radius: 5px;
+            font-size: 18px;
+            font-family: 'Nunito',
+                'Arial',
+                sans-serif;
+            padding: 1px 5px;
+
+            &:focus,
+            &:hover {
+                box-shadow: #bbb 0 0 10px -3px;
+            }
+        }
+
+        &:hover {
+            background: #fdfdfd;
         }
     }
 }

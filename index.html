@@ -38,45 +38,45 @@
                     onclick="document.getElementById('left').classList.toggle('active');this.classList.toggle('active')">menu</a>
             </div>
             <div><a class="material-icons md-24" title="Enregistrer" id="download" download="" href="#"
-                    onmouseover="createData()" onclick="createData()">cloud_download</a></div>
+                    onmouseover="createData(this)" onclick="createDatathis()">cloud_download</a></div>
             <div><input type="file" id="import" name="import" class="FM inputfile" accept="text/json,.json"
                     onchange="importTable(this.files[0])"><label class="FM" for="import"><a class="material-icons md-24"
                         title="Ouvrir">cloud_upload</a></label></div>
-            <div><a class="material-icons md-24" title="Variables">view_list</a></div>
-            <div><a class="material-icons md-24" title="Section de cable">calculate</a></div>
-            <div><a class="material-icons md-24" title="Thème">brightness_medium</a></div>
+            <div><a class="material-icons md-24" title="Variables" href="#Vars">view_list</a></div>
+            <div><a class="material-icons md-24" title="Section de cable" href="#Calc">calculate</a></div>
+            <div><a class="material-icons md-24" title="Haut" href="#Sums">north</a></div>
 
         </div>
         <div class="iconsText">
             <div><a href="#"
                     onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Menu</a>
             </div>
-            <div><a id="download" download="" href="#" onmouseover="createData()"
-                    onclick="createData();
-                document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Télécharger</a>
+            <div><a id="download2" download="" href="#" onmouseover="createData(this)"
+                    onclick="createData(this);document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Télécharger</a>
             </div>
             <div>
                 <input type="file" id="import2" name="import" class="FM inputfile" accept="text/json,.json"
                     onchange="importTable(this.files[0])"><label class="FM" for="import2">
-                    <a href="#"
+                    <a
                         onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Uploader</a></label>
             </div>
-            <div><a href="#"
+            <div><a href="#Vars"
                     onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Variables</a>
             </div>
-            <div><a href="#"
+            <div><a href="#Calc"
                     onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Section
                     de cable</a></div>
-            <div><a href="#"
-                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Thème</a>
+            <div><a href="#Sums"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Retour
+                    en haut</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <section class="totalS">
+        <section class="totalS" id="Sums">
             <h2>Totaux</h2>
-            <h4 class="subtitle">Totaux du <a href="#Table">tableau de calcul</a>.</h4>
+            <h4 class="subtitle">Totaux du <a href="#Table" class="stdlink">tableau de calcul</a>.</h4>
             <div class="totaux">
                 <div>
                     <span class="totalC" id="totalN">0 W</span><br>
@@ -141,18 +141,42 @@
                 </div>-->
                 <div class="new">
                     <div class="trip" onclick="addTRow()">
-                        <div><a class="material-icons md-24">add</a></div>
+                        <div><span class="material-icons md-24">add</span></div>
                         <span>Nouvel appareil triphasé</span>
                     </div>
                     <div class="monop" onclick="addMRow()">
-                        <div><a class="material-icons md-24">add</a></div>
+                        <div><span class="material-icons md-24">add</span></div>
                         <span>Nouvel appareil monophasé</span>
 
                     </div>
                 </div>
             </div>
         </section>
+        <section id="Vars">
+            <h2>Variables</h2>
+            <h4 class="subtitle">Variables enregistrées à partir du <a href="#Calc" class="stdlink">calculateur de
+                    section de
+                    cables</a>.</h4>
+            <div class="nForm">
+                <div class="varAdd" title="Ajouter une nouvelle variable" onclick="linkResVar(this)">
+                    <div class="material-icons md-24">add</div>
+                </div>
+                <input type="text" placeholder="Nom de la nouvelle variable" id="varNewName">
+                =
+                <input type="text" placeholder="Valeur de la nouvelle variable" id="varNewVal">
+            </div>
+            <ul id="vars">
+            </ul>
+        </section>
+        <section id="Calc">
+            <h2>Calculateur de section de câble</h2>
+            <h4 class="subtitle">Calculateur permettant d'obtenir la section nécessaire d'un câble</h4>
+        </section>
     </main>
+    <footer>
+        <a>Signaler un bug</a>
+        <a>code source</a>
+    </footer>
 </body>
 
 </html>

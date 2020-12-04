@@ -197,7 +197,6 @@ header div {
 
 header #pageTitle {
   text-align: right;
-  font: 'Segoe UI', 'Nunito', sans-serif;
   font-size: 1.4em;
   margin-right: 2vw;
 }
@@ -216,7 +215,6 @@ header .tableTitle input {
   border: none;
   margin: 0;
   padding: 0;
-  font: 'Segoe UI', 'Nunito', sans-serif;
   font-size: 24px;
   font-weight: 200;
   background: transparent;
@@ -280,6 +278,10 @@ nav#left #import2 {
   display: none;
 }
 
+nav#left .FM:hover {
+  cursor: pointer;
+}
+
 nav#left label {
   padding: 0;
 }
@@ -299,6 +301,7 @@ nav#left .icons {
 nav#left .icons div {
   padding: 0;
   height: 81px;
+  color: #666;
 }
 
 nav#left .icons div * {
@@ -366,22 +369,6 @@ nav#left .iconsText div:first-child {
 nav#left .iconsText div:last-child {
   -ms-flex-item-align: end;
       align-self: flex-end;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
-button.main {
-  color: #fdfdfd;
-  background-color: #2181e2;
-  border: none;
-  font-family: 'Nunito', 'Segoe UI', Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 70px;
-  padding: 6px 13px;
-  margin: auto 2vw;
 }
 
 main {
@@ -609,5 +596,93 @@ main .totaux .totalC {
   font-family: 'Ubuntu', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 38px;
+}
+
+a.stdlink {
+  text-decoration: underline;
+  -webkit-text-decoration-color: rgba(0, 128, 255, 0.2);
+          text-decoration-color: rgba(0, 128, 255, 0.2);
+  -webkit-transition: -webkit-text-decoration-color .2s;
+  transition: -webkit-text-decoration-color .2s;
+  transition: text-decoration-color .2s;
+  transition: text-decoration-color .2s, -webkit-text-decoration-color .2s;
+}
+
+a.stdlink:hover {
+  -webkit-text-decoration-color: rgba(0, 128, 255, 0.8);
+          text-decoration-color: rgba(0, 128, 255, 0.8);
+}
+
+#Vars .varAdd,
+#Vars .varDel {
+  height: 40px;
+  width: 40px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center stretch;
+  border-radius: 5px;
+  -webkit-transition: -webkit-box-shadow .2s;
+  transition: -webkit-box-shadow .2s;
+  transition: box-shadow .2s;
+  transition: box-shadow .2s, -webkit-box-shadow .2s;
+}
+
+#Vars .varAdd .material-icons,
+#Vars .varDel .material-icons {
+  text-align: center;
+  cursor: pointer;
+}
+
+#Vars .varAdd:hover,
+#Vars .varDel:hover {
+  -webkit-box-shadow: #bbb 0 0 10px -2px;
+          box-shadow: #bbb 0 0 10px -2px;
+}
+
+#Vars .nForm,
+#Vars ul li {
+  margin: 5px;
+  border-radius: 7px;
+  padding: 6px;
+  height: 36px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  place-items: center;
+  -webkit-transition: background-color .4s ease-out;
+  transition: background-color .4s ease-out;
+}
+
+#Vars .nForm *,
+#Vars ul li * {
+  margin: 1px 4px;
+}
+
+#Vars .nForm input,
+#Vars ul li input {
+  width: 13vw;
+  border: none;
+  -webkit-transition: -webkit-box-shadow .2s;
+  transition: -webkit-box-shadow .2s;
+  transition: box-shadow .2s;
+  transition: box-shadow .2s, -webkit-box-shadow .2s;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: 'Nunito', 'Arial', sans-serif;
+  padding: 1px 5px;
+}
+
+#Vars .nForm input:focus, #Vars .nForm input:hover,
+#Vars ul li input:focus,
+#Vars ul li input:hover {
+  -webkit-box-shadow: #bbb 0 0 10px -3px;
+          box-shadow: #bbb 0 0 10px -3px;
+}
+
+#Vars .nForm:hover,
+#Vars ul li:hover {
+  background: #fdfdfd;
 }
 /*# sourceMappingURL=style.css.map */

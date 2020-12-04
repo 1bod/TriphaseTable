@@ -9,7 +9,7 @@ if (document.readyState == 'complete' || document.readyState == 'interactive') {
 function changed(el) {
     el.style.width = (el.value.length * 23 + 10) + 'px';
 }
-
+var simplevar2 = 0
 var simplevar = 0
 var unsaved = false;
 
@@ -30,6 +30,10 @@ function del(b) {
     calculs()
 }
 
+function delEZ(b) {
+    b.parentNode.remove()
+}
+
 
 function calculs() {
     P1Total = 0
@@ -42,19 +46,15 @@ function calculs() {
     })
     document.querySelectorAll('.mph').forEach(element => {
         phase = element.value
-        
-        
-        document.querySelectorAll('.mnum').forEach(el => {
-            valh = el.value
-            if(phase == 1){
-                P1Total += Number(el.value)
-            }else if(phase == 2){
-                P2Total += Number(el.value)
-            }else if(phase == 3){
-                P3Total += Number(el.value)
-            }
-        
-    })
+        valh = element.parentNode.previousSibling.firstChild.value
+        if (phase == 1) {
+            P1Total += Number(valh)
+        } else if (phase == 2) {
+            P2Total += Number(valh)
+        } else if (phase == 3) {
+            P3Total += Number(valh)
+        }
+
     })
     GTotal = P1Total + P2Total + P3Total
     // Render
@@ -66,7 +66,7 @@ function calculs() {
     unsaved = true
 }
 
-function createData() {
+function createData(el) {
     let title = _.escape(document.getElementById("title").value)
     let table = []
     var tableJSON = [{
@@ -105,10 +105,10 @@ function createData() {
         })
     })
     tableJSON.push(totVars)
-    save(tableJSON)
+    save(tableJSON, el.id)
 }
 
-function save(downloadJSON) {
+function save(downloadJSON, did) {
     window.URL.revokeObjectURL(url);
     var data = new Blob([JSON.stringify(downloadJSON)], {
         type: 'text/json'
@@ -116,9 +116,9 @@ function save(downloadJSON) {
 
     var url = window.URL.createObjectURL(data)
 
-    document.getElementById('download').href = url
-    document.getElementById('download').target = "_blank"
-    document.getElementById('download').download = document.getElementById("title").value ? _.escape(document.getElementById("title").value) + ".json" : "table" + ".json"
+    document.getElementById(did).href = url
+    document.getElementById(did).target = "_blank"
+    document.getElementById(did).download = document.getElementById("title").value ? _.escape(document.getElementById("title").value) + ".json" : "table" + ".json"
 }
 
 function importTable(table) {
@@ -184,8 +184,13 @@ function unloadPage() {
 
 window.onbeforeunload = unloadPage;
 
-function linkResVar() {
-    let name = prompt("Quel nom voulez vous donner à cette variable")
-    let val = parseFloat(document.getElementById("Result").innerHTML)
-    document.querySelector('.linkedVars').insertAdjacentHTML('beforeend', "<li class='linkedVar'>" + name + " = " + val + "mm</li>")
+function linkResVar(plus, from) {
+    simplevar2++
+    if (from == 'v') {
+        vname = plus.nextElementSibling.value
+        vvalue = plus.nextElementSibling.nextElementSibling.value
+    } else if (from == 'c') {
+
+    }
+    document.querySelector('#vars').insertAdjacentHTML('beforeend', '<li id="var' + simplevar2 + '" class="var"><span onclick="delEZ(this)" class="varDel" title="Supprimer la variable"><div class="material-icons md-24">clear</div></span><p class="varName">' + vname + '</p>=<p class="varVal">' + vvalue + '</p></li><br>')
 }
