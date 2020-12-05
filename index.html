@@ -1,142 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau triphasé</title>
-
-    <script src="src/lodash.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Tableau Triphasé</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
     <script src="src/script.js" defer></script>
     <link rel="stylesheet" href="src/reset.css">
     <link rel="stylesheet" href="src/style.css">
+
 </head>
 
 <body>
-    <div id="hovers">
-        <div id="messageContent"></div>
-        <div id="calcModal">
-            <div class="Mtop">
-                <span class="Mtitle">Calcul de section de câble électrique</span>
-                <a id="dismissMod"
-                    onclick="this.parentNode.parentNode.parentNode.classList.remove('activeMod')">&times;</a>
-                <hr>
-            </div>
-            <div class="Mcontent">
-                <table>
-                    <tr>
-                        <td><label for="U">Tension=</label></td>
-                        <td class="left"><input onchange="section()" type="number" value="230" id="U"> <Var>V</Var></td>
-                    </tr>
-                    <tr>
-                        <td><label for="dU">Chute de tension=</label></td>
-                        <td class="left"><input onchange="section()" type="number" value="3" id="dU"> <Var>%</Var></td>
-                    </tr>
-                    <tr>
-                        <td>Chute de tension relative : </td>
-                        <td class="left"><span id="chuteDeTensionRel">6.90</span> V</td>
-                    </tr>
-                    <tr>
-                        <td><label for="roh">ρ=</label></td>
-                        <td class="left"><input onchange="section()" list="resistivityList" id="roh"
-                                value="0.023 (Cuivre)"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="L">Longueur=</label></td>
-                        <td class="left"><input onchange="section()" type="number" value="20" id="L"> <Var>m</Var></td>
-                    </tr>
-                    <tr>
-                        <td><label for="I">Intensité=</label></td>
-                        <td class="left"><input onchange="section()" type="number" value="1" id="I"> <Var>A</Var></td>
-                    </tr>
-                    <tr>
-                        <td>Section minimum :</td>
-                        <td class="left"><span id="Result">0.13</span> <var>mm</var></td>
-                    </tr>
-                </table>
-                <button class="button" onclick="section()">Recalculer</button>
-                <button class="button" onclick="linkResVar()">Lier la variable au tableau</button>
-            </div>
-            <datalist id="resistivityList">
-                <option value="0.023 (Cuivre)">
-                <option value="0.037 (Aluminium)">
-            </datalist>
+
         </div>
     </div>
-
-    <nav>
-        <div class="left">
-            <div class="FM">
-                <a id="download" download="" href="#" onmouseover="createData()" onclick="createData()">Télécharger</a>
-            </div>
-            <input type="file" id="import" name="import" class="FM inputfile" accept="text/json,.json"
-                onchange="importTable(this.files[0])"><label class="FM" for="import">Importer</label>
+    <header>
+        <div class="tableTitle">
+            <input type="text" id="title" class="title" placeholder="Titre">
         </div>
 
-        <div class="right">
-            <div class="FM"><a onclick="document.getElementById('hovers').classList.add('activeMod')">Calcul section de
-                    cable</a>
+        <div id="pageTitle">Tableau Triphasé</div>
+
+
+    </header>
+    <nav id="left">
+        <div class="icons">
+
+            <div><a class="material-icons md-24" id="menuToggle" title="Menu"
+                    onclick="document.getElementById('left').classList.toggle('active');this.classList.toggle('active')">menu</a>
+            </div>
+            <div><a class="material-icons md-24" title="Enregistrer" id="download" download="" href="#"
+                    onmouseover="createData(this)" onclick="createData(this)">cloud_download</a></div>
+            <div><input type="file" id="import" name="import" class="FM inputfile" accept="text/json,.json"
+                    onchange="importTable(this.files[0])"><label class="FM" for="import"><a class="material-icons md-24"
+                        title="Ouvrir">cloud_upload</a></label></div>
+            <div><a class="material-icons md-24" title="Variables" href="#Vars">view_list</a></div>
+            <div><a class="material-icons md-24" title="Section de cable" href="#Calc">calculate</a></div>
+            <div><a class="material-icons md-24" title="Haut" href="#Sums">north</a></div>
+
+        </div>
+        <div class="iconsText">
+            <div><a href="#"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Menu</a>
+            </div>
+            <div><a id="download2" download="" href="#" onmouseover="createData(this)"
+                    onclick="createData(this);document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Télécharger</a>
+            </div>
+            <div>
+                <input type="file" id="import2" name="import" class="FM inputfile" accept="text/json,.json"
+                    onchange="importTable(this.files[0])"><label class="FM" for="import2">
+                    <a
+                        onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Uploader</a></label>
+            </div>
+            <div><a href="#Vars"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Variables</a>
+            </div>
+            <div><a href="#Calc"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Section
+                    de cable</a></div>
+            <div><a href="#Sums"
+                    onclick="document.getElementById('left').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')">Retour
+                    en haut</a>
             </div>
         </div>
     </nav>
-    <div class="navSpacing"></div>
-    <div class="savedVars">
-        <h3 onclick="this.parentNode.classList.toggle('active')">Variables sauvegardées <b>+</b></h3>
-        <ul class="linkedVars">
 
-        </ul>
+    <main>
+        <section class="totalS" id="Sums">
+            <h2>Totaux</h2>
+            <h4 class="subtitle">Totaux du <a href="#Table" class="stdlink">tableau de calcul</a>.</h4>
+            <div class="totaux">
+                <div>
+                    <span class="totalC" id="totalN">0 W</span><br>
+                    <span class="sub">Total général</span>
+                </div>
+                <div>
+                    <span class="totalC" id="totalP1">0 W</span><br>
+                    <span class="sub">Total phase 1</span>
+                </div>
+                <div>
+                    <span class="totalC" id="totalP2">0 W</span><br>
+                    <span class="sub">Total phase 2</span>
+                </div>
+                <div>
+                    <span class="totalC" id="totalP3">0 W</span><br>
+                    <span class="sub">Total phase 3</span>
+                </div>
+            </div>
+        </section>
+        <section class="Table" id="Table">
+            <h2>Appareils</h2>
+            <h4 class="subtitle">Tous les appareils et leurs consommations.</h4>
+            <div class="devices">
+                <!--<div class="box tri">
+                    <div class="icon">
+                        <a>
+                            <div class="material-icons drag">drag_indicator</div>
+                        </a>
+
+                        <div class="mic">
+                            <div class="material-icons">dehaze</div>
+                        </div>
+
+
+                        <div class="material-icons del">delete</div>
+
+                    </div>
+                    <input type="text" class="deviceName" placeholder="Nom de l'appareil">
+                    <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
+                    <span class="sub">consommation</span>
+                </div>
+                <div class="box mono">
+                    <div class="icon">
+                        <a>
+                            <div class="material-icons drag">drag_indicator</div>
+                        </a>
+                        <div class="mic">
+                            <div class="material-icons">horizontal_rule</div>
+                        </div>
+
+
+                        <div class="material-icons del">delete</div>
+                    </div>
+                    <input type="text" class="deviceName" placeholder="Nom de l'appareil">
+                    <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
+                    <span class="sub">consommation sur la<select name="phase" class="phase">
+                            <option value="1" selected>phase 1</option>
+                            <option value="2" selected>phase 2</option>
+                            <option value="3" selected>phase 3</option>
+                        </select></span>
+
+                </div>-->
+                <div class="new">
+                    <div class="trip" onclick="addTRow()">
+                        <div><span class="material-icons md-24">add</span></div>
+                        <span>Nouvel appareil triphasé</span>
+                    </div>
+                    <div class="monop" onclick="addMRow()">
+                        <div><span class="material-icons md-24">add</span></div>
+                        <span>Nouvel appareil monophasé</span>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="Vars">
+            <h2>Variables</h2>
+            <h4 class="subtitle">Variables enregistrées à partir du <a href="#Calc" class="stdlink">calculateur de
+                    section de
+                    cables</a>.</h4>
+            <div class="nForm">
+                <div class="varAdd" title="Ajouter une variable" onclick="linkResVar(this, 'v')">
+                    <div class="material-icons md-24">add</div>
+                </div>
+                <input type="text" placeholder="Nom de la variable" id="varNewName">
+                =
+                <input type="text" placeholder="Valeur de la variable" id="varNewVal">
+            </div>
+            <ul id="vars">
+            </ul>
+        </section>
+        <section id="Calc">
+            <!--
+                P
+                U
+                L
+                C
+                Ur = U - ( U * C ) /100
+                SCe = 2 * 0.017 * L * P / U * 1 / ( U * C / 100 )
+            -->
+            <h2>Calculateur de section de câble</h2>
+            <h4 class="subtitle">Calculateur permettant d'obtenir la section nécessaire d'un câble</h4>
+            <div>
+                <div class="calcIn">
+                    <label for="calcP">Puissance</label>
+                    <input step="100" value="30" type="number" id="calcP">
+                    <p>W</p>
+                    <label for="calcV">Tension</label>
+                    <input value="12" type="number" id="calcV">
+                    <p>V</p>
+                    <label for="calcM">Longueur du câble</label>
+                    <input step="5" value="15" type="number" id="calcM">
+                    <p>m</p>
+                    <label for="calcPo" title="Chute de tension maximale acceptée norme NF C15-100"">Chute de tension</label>
+                    <input type="number" step="10" value="7" id="calcPo">
+                    <p>%</p>
+
+                </div>
+                <div class=" calcR">
+                    <span>Chute de tension réelle</span><span class="result" id="Ur">11.16</span><p> V</p>
+                    <span>Section de cable</span><span class="result" id="SCe">1.52</span><p> mm</p>
+                    <span>Section de cable exacte</span><span class="result" id="SC">2.5</span><p> mm²</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div>
+        <a target="_blank" href="https://github.com/Boudial/TriphaseTable/issues/new">Signaler un bug</a>
+        <a target="_blank" href="https://github.com/Boudial/TriphaseTable">Code source</a>
     </div>
-    <table id="headtable">
-        <tr>
-            <th colspan="7"><input type="text" id="title" class="title" placeholder="Titre"></th>
-        </tr>
-        <tr>
-
-            <th rowspan="3">Désignation</th>
-            <th class="txtright" colspan="2">
-                Total =
-            </th>
-            <th class="total">
-                <span id="totalN">0</span>W
-            </th>
-            <th><span id="totalP1">0</span>W</th>
-            <th><span id="totalP2">0</span>W</th>
-            <th><span id="totalP3">0</span>W</th>
-
-        </tr>
-        <tr>
-
-            <td class="mono">
-                Mono. phase 1
-            </td>
-            <td class="mono">
-                Mono. phase 2
-            </td>
-            <td class="mono">
-                Mono. phase 3
-            </td>
-            <td rowspan="2">Phase 1</td>
-            <td rowspan="2">Phase 2</td>
-            <td rowspan="2">Phase 3</td>
-
-        </tr>
-        <tr>
-
-            <td class="triphase" colspan="3">
-                Triphasé
-            </td>
-        </tr>
-
-    </table>
-    <table id="maintable">
-
-    </table>
-    <div class="NewbuttonContainer">
-        <button class="button T" onclick="addTRow()">Nouveau Triphasé</button>
-        <button class="button M" onclick="addMRow()">Nouveau Monophasé</button>
-
-    </div>
-
+    <div><a target="_blank" href="https://github.com/Boudial">Maxence Raynal</a></div>
+    </footer>
 </body>
 
 </html>

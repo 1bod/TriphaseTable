@@ -1,20 +1,37 @@
+if (document.readyState == 'complete' || document.readyState == 'interactive') {
+    setTimeout(() => {
+        document.querySelector('.loader').style.opacity = "0";
+        document.querySelector('.loader').style.display = "none"
+    }, 500);
+
+}
+
+function changed(el) {
+    el.style.width = (el.value.length * 23 + 10) + 'px';
+}
+var simplevar2 = 0
 var simplevar = 0
 var unsaved = false;
 
 function addTRow() {
     simplevar++
-    document.getElementById('maintable').insertAdjacentHTML('beforeend', '<tr id="' + simplevar + '" class="trow row"><td class="rname" contenteditable></td><td colspan="3"><input onchange="calculs()" value="0" class="T" name="T" type="number" min="0">W</td></td><td class="delP"><div class="del" onclick="del(this)" title="Supprimer cette ligne">&times;</div></td></tr>')
+    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="tri box"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">dehaze</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input onchange="changed(this);calculs()" value="0" class="T" type="number">W</span><span class="sub">consommation</span></div>')
     return simplevar
 }
 
 function addMRow() {
     simplevar++
-    document.getElementById('maintable').insertAdjacentHTML('beforeend', '<tr id="' + simplevar + '" class="mrow row"><td class="rname" contenteditable></td><td><input onchange="calculs()" value="0" class="P1" name="P1" type="number" min="0">W</td><td><input onchange="calculs()" value="0" class="P2" name="P2" type="number" min="0">W</td><td><input onchange="calculs()" value="0" class="P3" name="P3" type="number" min="0">W</td><td class="delP"><div class="del" onclick="del(this)" title="Supprimer cette ligne">&times;</div></td></tr>')
+    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="mono box"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">horizontal_rule</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input class="mnum" onchange="changed(this);calculs()" value="0" type="number">W</span><span class="sub">consommation sur la<select class="mph" name="phase" class="phase" onchange="calculs()"><option value="1" selected>phase 1</option><option value="2">phase 2</option><option value="3">phase 3</option></select></span></div>')
     return simplevar
 }
 
-function del(times) {
-    times.parentNode.parentNode.remove()
+function del(b) {
+    b.parentNode.parentNode.remove()
+    calculs()
+}
+
+function delEZ(b) {
+    b.parentNode.remove()
 }
 
 
@@ -27,68 +44,72 @@ function calculs() {
         P2Total += Number(triphase.value / 3)
         P3Total += Number(triphase.value / 3)
     })
-    document.querySelectorAll('.P1').forEach(P1 => {
-        P1Total += Number(P1.value)
-    })
-    document.querySelectorAll('.P2').forEach(P2 => {
-        P2Total += Number(P2.value)
-    })
-    document.querySelectorAll('.P3').forEach(P3 => {
-        P3Total += Number(P3.value)
+    document.querySelectorAll('.mph').forEach(element => {
+        phase = element.value
+        valh = element.parentNode.previousSibling.firstChild.value
+        if (phase == 1) {
+            P1Total += Number(valh)
+        } else if (phase == 2) {
+            P2Total += Number(valh)
+        } else if (phase == 3) {
+            P3Total += Number(valh)
+        }
+
     })
     GTotal = P1Total + P2Total + P3Total
     // Render
-    document.getElementById("totalN").innerHTML = Number(GTotal).toFixed(0)
-    document.getElementById("totalP1").innerHTML = Number(P1Total).toFixed(0)
-    document.getElementById("totalP2").innerHTML = Number(P2Total).toFixed(0)
-    document.getElementById("totalP3").innerHTML = Number(P3Total).toFixed(0)
+    document.getElementById("totalN").innerHTML = Number(GTotal).toFixed(0) + ' W'
+    document.getElementById("totalP1").innerHTML = Number(P1Total).toFixed(0) + ' W'
+    document.getElementById("totalP2").innerHTML = Number(P2Total).toFixed(0) + ' W'
+    document.getElementById("totalP3").innerHTML = Number(P3Total).toFixed(0) + ' W'
 
     unsaved = true
 }
 
-function createData() {
+function createData(el) {
     let title = _.escape(document.getElementById("title").value)
     let table = []
     var tableJSON = [{
         "title": title
     }]
-    document.querySelectorAll(".row").forEach(row => {
-        let rname = _.escape(row.querySelector(".rname").innerHTML)
+    document.querySelectorAll(".box").forEach(row => {
+        let rname = _.escape(row.querySelector(".rname").value)
         /*if (rname == "") {
             rname = row.getAttribute("id")
         }*/
-        if (_.startsWith(row.getAttribute("class"), 'trow')) { // si row = triphasé
+        if (_.startsWith(row.getAttribute("class"), 'tri')) { // si row = triphasé
 
             table.push({
                 'name': rname,
                 'type': 'T',
-                'value': row.childNodes[1].firstChild.value
+                'value': row.childNodes[3].firstChild.value
             })
-        } else if (_.startsWith(row.getAttribute("class"), 'mrow')) { // si row = monophasé
+        } else if (_.startsWith(row.getAttribute("class"), 'mono')) { // si row = monophasé
             table.push({
                 'name': rname,
                 'type': 'M',
-                'values': [row.childNodes[1].firstChild.value, row.childNodes[2].firstChild.value, row.childNodes[3].firstChild.value]
+                'phase': row.childNodes[4].lastChild.value,
+                'value': row.childNodes[3].firstChild.value
             })
         }
 
     })
     tableJSON.push(table)
     let totVars = []
-    document.querySelectorAll('.linkedVar').forEach(el => {
+    document.querySelectorAll('.varName').forEach(el => {
         let content = el.innerHTML.split(' = ')
-        let name = _.escape(content[0])
-        let val = parseFloat(content[1].substring(0,(content[1].length - 2)))
+        let name = _.escape(el.innerHTML)
+        let val = _.escape(el.nextElementSibling.innerHTML)
         totVars.push({
             'name': name,
             'value': val
         })
     })
     tableJSON.push(totVars)
-    save(tableJSON)
+    save(tableJSON, el.id)
 }
 
-function save(downloadJSON) {
+function save(downloadJSON, did) {
     window.URL.revokeObjectURL(url);
     var data = new Blob([JSON.stringify(downloadJSON)], {
         type: 'text/json'
@@ -96,9 +117,9 @@ function save(downloadJSON) {
 
     var url = window.URL.createObjectURL(data)
 
-    document.getElementById('download').href = url
-    document.getElementById('download').target = "_blank"
-    document.getElementById('download').download = document.getElementById("title").value ? _.escape(document.getElementById("title").value) + ".json" : "table" + ".json"
+    document.getElementById(did).href = url
+    document.getElementById(did).target = "_blank"
+    document.getElementById(did).download = document.getElementById("title").value ? _.escape(document.getElementById("title").value) + ".json" : "table" + ".json"
 }
 
 function importTable(table) {
@@ -115,21 +136,23 @@ function importTable(table) {
         tableData.forEach(obj => {
             if (obj.type == 'T') { //si la sauvegarde indique row = triphasé
                 let row = document.getElementById(String(addTRow()))
-                row.querySelector(".rname").innerHTML = obj.name
-                row.childNodes[1].firstChild.value = obj.value
+                row.querySelector(".rname").value = obj.name
+                row.childNodes[3].firstChild.value = obj.value
             } else if (obj.type == 'M') { //si la sauvegarde indique row = monomhasé
                 let row = document.getElementById(String(addMRow()))
-                row.querySelector(".rname").innerHTML = obj.name
-                row.childNodes[1].firstChild.value = obj.values[0]
-                row.childNodes[2].firstChild.value = obj.values[1]
-                row.childNodes[3].firstChild.value = obj.values[2]
+                row.querySelector(".rname").value = obj.name
+                row.childNodes[3].firstChild.value = obj.value
+                row.childNodes[4].lastChild.value = obj.phase
             }
         })
         fulltableData[2].forEach(obj => {
-            document.querySelector('.linkedVars').insertAdjacentHTML('beforeend', "<li class='linkedVar'>" + obj.name + " = " + obj.value + "mm</li>")
+            linkResVar(undefined, 'c', obj)
         })
     })
     reader.readAsText(table)
+    setTimeout(() => {
+        calculs()
+    }, 10);
 }
 
 function showError(message) {
@@ -154,8 +177,6 @@ function section() {
 
 //https://stackoverflow.com/questions/11844256/alert-for-unsaved-changes-in-form
 
-
-
 function unloadPage() {
     if (unsaved) {
         return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
@@ -164,8 +185,14 @@ function unloadPage() {
 
 window.onbeforeunload = unloadPage;
 
-function linkResVar() {
-    let name = prompt("Quel nom voulez vous donner à cette variable")
-    let val = parseFloat(document.getElementById("Result").innerHTML)
-    document.querySelector('.linkedVars').insertAdjacentHTML('beforeend', "<li class='linkedVar'>" + name + " = " + val + "mm</li>")
+function linkResVar(plus, form, content) {
+    simplevar2++
+    if (form == 'v') {
+        vname = plus.nextElementSibling.value
+        vvalue = plus.nextElementSibling.nextElementSibling.value
+    } else if (form == 'c') {
+        vname = content.name
+        vvalue = content.value
+    }
+    document.querySelector('#vars').insertAdjacentHTML('beforeend', '<li id="var' + simplevar2 + '" class="var"><span onclick="delEZ(this)" class="varDel" title="Supprimer la variable"><div class="material-icons md-24">clear</div></span><p class="varName">' + vname + '</p>=<p class="varVal">' + vvalue + '</p></li><br>')
 }
