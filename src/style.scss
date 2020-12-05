@@ -583,6 +583,7 @@ a.stdlink {
         height: 36px;
         display: inline-flex;
         place-items: center;
+        background-color: transparentize($color: #eee, $amount: .5);
         transition: background-color .4s ease-out;
 
         * {

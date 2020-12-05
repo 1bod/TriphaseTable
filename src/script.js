@@ -15,13 +15,13 @@ var unsaved = false;
 
 function addTRow() {
     simplevar++
-    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="box tri"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">dehaze</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input onchange="changed(this);calculs()" value="0" class="T" type="number">W</span><span class="sub">consommation</span></div>')
+    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="tri box"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">dehaze</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input onchange="changed(this);calculs()" value="0" class="T" type="number">W</span><span class="sub">consommation</span></div>')
     return simplevar
 }
 
 function addMRow() {
     simplevar++
-    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="box mono"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">horizontal_rule</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input class="mnum" onchange="changed(this);calculs()" value="0" type="number">W</span><span class="sub">consommation sur la<select class="mph" name="phase" class="phase" onchange="calculs()"><option value="1" selected>phase 1</option><option value="2">phase 2</option><option value="3">phase 3</option></select></span></div>')
+    document.getElementsByClassName('new').item(0).insertAdjacentHTML('beforeBegin', '<div id="' + simplevar + '" class="mono box"> <div class="icon"><a><div class="material-icons drag">drag_indicator</div></a><div class="mic"><div class="material-icons">horizontal_rule</div></div><div class="material-icons del" onclick="del(this)">delete</div></div><input type="text" class="deviceName rname" placeholder="Nom de l\'appareil"><span class="consumption"><input class="mnum" onchange="changed(this);calculs()" value="0" type="number">W</span><span class="sub">consommation sur la<select class="mph" name="phase" class="phase" onchange="calculs()"><option value="1" selected>phase 1</option><option value="2">phase 2</option><option value="3">phase 3</option></select></span></div>')
     return simplevar
 }
 
@@ -72,33 +72,34 @@ function createData(el) {
     var tableJSON = [{
         "title": title
     }]
-    document.querySelectorAll(".row").forEach(row => {
-        let rname = _.escape(row.querySelector(".rname").innerHTML)
+    document.querySelectorAll(".box").forEach(row => {
+        let rname = _.escape(row.querySelector(".rname").value)
         /*if (rname == "") {
             rname = row.getAttribute("id")
         }*/
-        if (_.startsWith(row.getAttribute("class"), 'trow')) { // si row = triphasé
+        if (_.startsWith(row.getAttribute("class"), 'tri')) { // si row = triphasé
 
             table.push({
                 'name': rname,
                 'type': 'T',
-                'value': row.childNodes[1].firstChild.value
+                'value': row.childNodes[3].firstChild.value
             })
-        } else if (_.startsWith(row.getAttribute("class"), 'mrow')) { // si row = monophasé
+        } else if (_.startsWith(row.getAttribute("class"), 'mono')) { // si row = monophasé
             table.push({
                 'name': rname,
                 'type': 'M',
-                'values': [row.childNodes[1].firstChild.value, row.childNodes[2].firstChild.value, row.childNodes[3].firstChild.value]
+                'phase': row.childNodes[4].lastChild.value,
+                'value': row.childNodes[3].firstChild.value
             })
         }
 
     })
     tableJSON.push(table)
     let totVars = []
-    document.querySelectorAll('.linkedVar').forEach(el => {
+    document.querySelectorAll('.varName').forEach(el => {
         let content = el.innerHTML.split(' = ')
-        let name = _.escape(content[0])
-        let val = parseFloat(content[1].substring(0, (content[1].length - 2)))
+        let name = _.escape(el.innerHTML)
+        let val = _.escape(el.nextElementSibling.innerHTML)
         totVars.push({
             'name': name,
             'value': val
@@ -135,21 +136,23 @@ function importTable(table) {
         tableData.forEach(obj => {
             if (obj.type == 'T') { //si la sauvegarde indique row = triphasé
                 let row = document.getElementById(String(addTRow()))
-                row.querySelector(".rname").innerHTML = obj.name
-                row.childNodes[1].firstChild.value = obj.value
+                row.querySelector(".rname").value = obj.name
+                row.childNodes[3].firstChild.value = obj.value
             } else if (obj.type == 'M') { //si la sauvegarde indique row = monomhasé
                 let row = document.getElementById(String(addMRow()))
-                row.querySelector(".rname").innerHTML = obj.name
-                row.childNodes[1].firstChild.value = obj.values[0]
-                row.childNodes[2].firstChild.value = obj.values[1]
-                row.childNodes[3].firstChild.value = obj.values[2]
+                row.querySelector(".rname").value = obj.name
+                row.childNodes[3].firstChild.value = obj.value
+                row.childNodes[4].lastChild.value = obj.phase
             }
         })
         fulltableData[2].forEach(obj => {
-            document.querySelector('.linkedVars').insertAdjacentHTML('beforeend', "<li class='linkedVar'>" + obj.name + " = " + obj.value + "mm</li>")
+            linkResVar(undefined, 'c', obj)
         })
     })
     reader.readAsText(table)
+    setTimeout(() => {
+        calculs()
+    }, 10);
 }
 
 function showError(message) {
@@ -184,13 +187,14 @@ function unloadPage() {
 
 window.onbeforeunload = unloadPage;
 
-function linkResVar(plus, from) {
+function linkResVar(plus, form, content) {
     simplevar2++
-    if (from == 'v') {
+    if (form == 'v') {
         vname = plus.nextElementSibling.value
         vvalue = plus.nextElementSibling.nextElementSibling.value
-    } else if (from == 'c') {
-
+    } else if (form == 'c') {
+        vname = content.name
+        vvalue = content.value
     }
     document.querySelector('#vars').insertAdjacentHTML('beforeend', '<li id="var' + simplevar2 + '" class="var"><span onclick="delEZ(this)" class="varDel" title="Supprimer la variable"><div class="material-icons md-24">clear</div></span><p class="varName">' + vname + '</p>=<p class="varVal">' + vvalue + '</p></li><br>')
 }

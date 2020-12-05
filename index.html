@@ -38,7 +38,7 @@
                     onclick="document.getElementById('left').classList.toggle('active');this.classList.toggle('active')">menu</a>
             </div>
             <div><a class="material-icons md-24" title="Enregistrer" id="download" download="" href="#"
-                    onmouseover="createData(this)" onclick="createDatathis()">cloud_download</a></div>
+                    onmouseover="createData(this)" onclick="createData(this)">cloud_download</a></div>
             <div><input type="file" id="import" name="import" class="FM inputfile" accept="text/json,.json"
                     onchange="importTable(this.files[0])"><label class="FM" for="import"><a class="material-icons md-24"
                         title="Ouvrir">cloud_upload</a></label></div>
@@ -158,7 +158,7 @@
                     section de
                     cables</a>.</h4>
             <div class="nForm">
-                <div class="varAdd" title="Ajouter une nouvelle variable" onclick="linkResVar(this)">
+                <div class="varAdd" title="Ajouter une nouvelle variable" onclick="linkResVar(this, 'v')">
                     <div class="material-icons md-24">add</div>
                 </div>
                 <input type="text" placeholder="Nom de la nouvelle variable" id="varNewName">

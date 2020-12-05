@@ -649,6 +649,7 @@ a.stdlink:hover {
   display: -ms-inline-flexbox;
   display: inline-flex;
   place-items: center;
+  background-color: rgba(238, 238, 238, 0.5);
   -webkit-transition: background-color .4s ease-out;
   transition: background-color .4s ease-out;
 }
