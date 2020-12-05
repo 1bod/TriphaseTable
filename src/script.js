@@ -177,8 +177,6 @@ function section() {
 
 //https://stackoverflow.com/questions/11844256/alert-for-unsaved-changes-in-form
 
-
-
 function unloadPage() {
     if (unsaved) {
         return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";

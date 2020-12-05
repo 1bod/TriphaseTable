@@ -165,6 +165,11 @@ a:visited {
   color: inherit;
 }
 
+input:not(:focus-within),
+select:not(:focus-within) {
+  outline: none;
+}
+
 header {
   float: right;
   background-color: #fdfdfd;
@@ -372,12 +377,12 @@ nav#left .iconsText div:last-child {
 }
 
 main {
+  display: block;
   position: relative;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   margin-left: 85px;
-  top: 70px;
   right: 0;
   overflow: hidden;
   padding: 8vh 10vw;
@@ -633,12 +638,6 @@ a.stdlink:hover {
   cursor: pointer;
 }
 
-#Vars .varAdd:hover,
-#Vars .varDel:hover {
-  -webkit-box-shadow: #bbb 0 0 10px -2px;
-          box-shadow: #bbb 0 0 10px -2px;
-}
-
 #Vars .nForm,
 #Vars ul li {
   margin: 5px;
@@ -667,23 +666,106 @@ a.stdlink:hover {
   transition: -webkit-box-shadow .2s;
   transition: box-shadow .2s;
   transition: box-shadow .2s, -webkit-box-shadow .2s;
-  height: 40px;
+  height: 35px;
   background-color: transparent;
-  border-radius: 5px;
   font-size: 18px;
   font-family: 'Nunito', 'Arial', sans-serif;
-  padding: 1px 5px;
+  padding: 0px 5px;
+  border-bottom: #e3e3e3 solid 1px;
 }
 
 #Vars .nForm input:focus, #Vars .nForm input:hover,
 #Vars ul li input:focus,
 #Vars ul li input:hover {
-  -webkit-box-shadow: #bbb 0 0 10px -3px;
-          box-shadow: #bbb 0 0 10px -3px;
+  border-bottom: #aaa solid 1px;
 }
 
 #Vars .nForm:hover,
 #Vars ul li:hover {
   background: #fdfdfd;
+}
+
+#Calc {
+  font-family: 'Ubuntu', 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+#Calc > div {
+  padding: 2vw;
+}
+
+#Calc > div > * {
+  padding: 2vh;
+  border-radius: 6px;
+}
+
+#Calc .calcIn {
+  font-size: 18px;
+  width: 50vw;
+  font-family: 'Nunito', 'Arial', sans-serif;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 30px;
+      grid-template-columns: 1fr 1fr 30px;
+  background-color: rgba(238, 238, 238, 0.5);
+  -webkit-transition: background-color .4s ease-out;
+  transition: background-color .4s ease-out;
+}
+
+#Calc .calcIn input {
+  background: transparent;
+  text-align: right;
+  font: inherit;
+  border: none;
+  border-radius: 4px;
+}
+
+#Calc .calcIn input:focus, #Calc .calcIn input:hover {
+  background-color: #fdfdfd;
+}
+
+#Calc .calcR {
+  font-size: 26px;
+  font-weight: 700;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 300px auto 10fr;
+      grid-template-columns: 300px auto 10fr;
+}
+
+#Calc .calcR span:not(.result) {
+  font-size: 24px;
+  font-family: 'Nunito', 'Arial', sans-serif;
+}
+
+footer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  min-height: 8vh;
+  width: calc(100% - 130px);
+  margin-left: 80px;
+  padding: 10px 25px;
+  background-color: #FDFDFD;
+  bottom: 0;
+  color: #777;
+}
+
+footer div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px 3vw;
+}
+
+footer div a {
+  padding: 5px;
 }
 /*# sourceMappingURL=style.css.map */

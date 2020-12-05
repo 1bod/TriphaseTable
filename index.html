@@ -158,24 +158,57 @@
                     section de
                     cables</a>.</h4>
             <div class="nForm">
-                <div class="varAdd" title="Ajouter une nouvelle variable" onclick="linkResVar(this, 'v')">
+                <div class="varAdd" title="Ajouter une variable" onclick="linkResVar(this, 'v')">
                     <div class="material-icons md-24">add</div>
                 </div>
-                <input type="text" placeholder="Nom de la nouvelle variable" id="varNewName">
+                <input type="text" placeholder="Nom de la variable" id="varNewName">
                 =
-                <input type="text" placeholder="Valeur de la nouvelle variable" id="varNewVal">
+                <input type="text" placeholder="Valeur de la variable" id="varNewVal">
             </div>
             <ul id="vars">
             </ul>
         </section>
         <section id="Calc">
+            <!--
+                P
+                U
+                L
+                C
+                Ur = U - ( U * C ) /100
+                SCe = 2 * 0.017 * L * P / U * 1 / ( U * C / 100 )
+            -->
             <h2>Calculateur de section de câble</h2>
             <h4 class="subtitle">Calculateur permettant d'obtenir la section nécessaire d'un câble</h4>
+            <div>
+                <div class="calcIn">
+                    <label for="calcP">Puissance</label>
+                    <input step="100" value="30" type="number" id="calcP">
+                    <p>W</p>
+                    <label for="calcV">Tension</label>
+                    <input value="12" type="number" id="calcV">
+                    <p>V</p>
+                    <label for="calcM">Longueur du câble</label>
+                    <input step="5" value="15" type="number" id="calcM">
+                    <p>m</p>
+                    <label for="calcPo" title="Chute de tension maximale acceptée norme NF C15-100"">Chute de tension</label>
+                    <input type="number" step="10" value="7" id="calcPo">
+                    <p>%</p>
+
+                </div>
+                <div class=" calcR">
+                    <span>Chute de tension réelle</span><span class="result" id="Ur">11.16</span><p> V</p>
+                    <span>Section de cable</span><span class="result" id="SCe">1.52</span><p> mm</p>
+                    <span>Section de cable exacte</span><span class="result" id="SC">2.5</span><p> mm²</p>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
-        <a>Signaler un bug</a>
-        <a>code source</a>
+        <div>
+        <a target="_blank" href="https://github.com/Boudial/TriphaseTable/issues/new">Signaler un bug</a>
+        <a target="_blank" href="https://github.com/Boudial/TriphaseTable">Code source</a>
+    </div>
+    <div><a target="_blank" href="https://github.com/Boudial">Maxence Raynal</a></div>
     </footer>
 </body>
 
