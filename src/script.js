@@ -162,17 +162,29 @@ function showError(message) {
 }
 
 function section() {
-    let T = document.getElementById("U").value
-    let dU = document.getElementById("dU").value
-    let TRel = parseFloat(document.getElementById("chuteDeTensionRel").innerHTML)
-    let rohtxt = document.getElementById("roh").value
-    let roh = rohtxt == "0.037 (Aluminium)" ? 0.037 : 0.023
-    let L = document.getElementById("L").value
-    let I = document.getElementById("I").value
-    TRel = (dU / 100) * T
-    document.getElementById("chuteDeTensionRel").innerHTML = TRel.toFixed(2)
-    result = (roh * 2 * L * I) / TRel
-    document.getElementById("Result").innerHTML = result.toFixed(2)
+    console.info("Calcul de la section de câble")
+    /*
+        let T = document.getElementById("U").value
+        let dU = document.getElementById("dU").value
+        let TRel = parseFloat(document.getElementById("chuteDeTensionRel").innerHTML)
+        let rohtxt = document.getElementById("roh").value
+        let roh = rohtxt == "0.037 (Aluminium)" ? 0.037 : 0.023
+        let L = document.getElementById("L").value
+        let I = document.getElementById("I").value
+        TRel = (dU / 100) * T
+        document.getElementById("chuteDeTensionRel").innerHTML = TRel.toFixed(2)
+        result = (roh * 2 * L * I) / TRel
+        document.getElementById("Result").innerHTML = result.toFixed(2)*/
+    let P = document.querySelector('#calcP').value
+    let U = document.querySelector('#calcV').value
+    let L = document.querySelector('#calcM').value
+    let C = document.querySelector('#calcPo').value
+    let Ur = U - (U * C) / 100
+    let SCe = 2 * 0.017 * L * P / U * 1 / (U * C / 100)
+    document.querySelector('#Ur').innerHTML = Ur.toFixed(2)
+    document.querySelector('#SCe').innerHTML = SCe.toFixed(2)
+    let SC = SCe < 1 ? 1 : SCe < 1.5 ? 1.5 : SCe < 2.5 ? 2.5 : SCe < 4 ? 4 : SCe < 6 ? 6 : SCe < 10 ? 10 : SCe < 16 ? 16 : SCe < 25 ? 25 : "25+"
+    document.querySelector('#SC').innerHTML = SC == Number ? SC.toFixed(2) : SC
 }
 
 //https://stackoverflow.com/questions/11844256/alert-for-unsaved-changes-in-form

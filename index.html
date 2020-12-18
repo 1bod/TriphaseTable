@@ -14,7 +14,14 @@
 </head>
 
 <body>
-
+    <div class="loader">
+        <div>
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
     <header>
@@ -95,45 +102,6 @@
             <h2>Appareils</h2>
             <h4 class="subtitle">Tous les appareils et leurs consommations.</h4>
             <div class="devices">
-                <!--<div class="box tri">
-                    <div class="icon">
-                        <a>
-                            <div class="material-icons drag">drag_indicator</div>
-                        </a>
-
-                        <div class="mic">
-                            <div class="material-icons">dehaze</div>
-                        </div>
-
-
-                        <div class="material-icons del">delete</div>
-
-                    </div>
-                    <input type="text" class="deviceName" placeholder="Nom de l'appareil">
-                    <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="sub">consommation</span>
-                </div>
-                <div class="box mono">
-                    <div class="icon">
-                        <a>
-                            <div class="material-icons drag">drag_indicator</div>
-                        </a>
-                        <div class="mic">
-                            <div class="material-icons">horizontal_rule</div>
-                        </div>
-
-
-                        <div class="material-icons del">delete</div>
-                    </div>
-                    <input type="text" class="deviceName" placeholder="Nom de l'appareil">
-                    <span class="consumption"><input onchange="changed(this)" value="0" type="number">W</span>
-                    <span class="sub">consommation sur la<select name="phase" class="phase">
-                            <option value="1" selected>phase 1</option>
-                            <option value="2" selected>phase 2</option>
-                            <option value="3" selected>phase 3</option>
-                        </select></span>
-
-                </div>-->
                 <div class="new">
                     <div class="trip" onclick="addTRow()">
                         <div><span class="material-icons md-24">add</span></div>
@@ -164,46 +132,41 @@
             </ul>
         </section>
         <section id="Calc">
-            <!--
-                P
-                U
-                L
-                C
-                Ur = U - ( U * C ) /100
-                SCe = 2 * 0.017 * L * P / U * 1 / ( U * C / 100 )
-            -->
             <h2>Calculateur de section de câble</h2>
             <h4 class="subtitle">Calculateur permettant d'obtenir la section nécessaire d'un câble</h4>
             <div>
                 <div class="calcIn">
                     <label for="calcP">Puissance</label>
-                    <input step="100" value="30" type="number" id="calcP">
+                    <input onchange="section()" step="100" value="30" type="number" id="calcP" min="0">
                     <p>W</p>
                     <label for="calcV">Tension</label>
-                    <input value="12" type="number" id="calcV">
+                    <input onchange="section()" value="12" type="number" id="calcV" min="0">
                     <p>V</p>
                     <label for="calcM">Longueur du câble</label>
-                    <input step="5" value="15" type="number" id="calcM">
+                    <input onchange="section()" step="5" value="15" type="number" id="calcM" min="0">
                     <p>m</p>
                     <label for="calcPo" title="Chute de tension maximale acceptée norme NF C15-100"">Chute de tension</label>
-                    <input type="number" step="10" value="7" id="calcPo">
-                    <p>%</p>
+                    <input onchange=" section()" type="number" step="10" value="7" id="calcPo" max="100" min="0">
+                        <p>%</p>
 
                 </div>
                 <div class=" calcR">
-                    <span>Chute de tension réelle</span><span class="result" id="Ur">11.16</span><p> V</p>
-                    <span>Section de cable</span><span class="result" id="SCe">1.52</span><p> mm</p>
-                    <span>Section de cable exacte</span><span class="result" id="SC">2.5</span><p> mm²</p>
+                    <span>Chute de tension réelle</span><span class="result" id="Ur">11.16</span>
+                    <p> V</p>
+                    <span>Section de cable</span><span class="result" id="SCe">1.52</span>
+                    <p>mm²</p>
+                    <span>Section de cable exacte</span><span class="result" id="SC">2.5</span>
+                    <p> mm²</p>
                 </div>
             </div>
         </section>
     </main>
     <footer>
         <div>
-        <a target="_blank" href="https://github.com/Boudial/TriphaseTable/issues/new">Signaler un bug</a>
-        <a target="_blank" href="https://github.com/Boudial/TriphaseTable">Code source</a>
-    </div>
-    <div><a target="_blank" href="https://github.com/Boudial">Maxence Raynal</a></div>
+            <a target="_blank" href="https://github.com/Boudial/TriphaseTable/issues/new">Signaler un bug</a>
+            <a target="_blank" href="https://github.com/Boudial/TriphaseTable">Code source</a>
+        </div>
+        <div><a target="_blank" href="https://github.com/Boudial">Maxence Raynal</a></div>
     </footer>
 </body>
 
